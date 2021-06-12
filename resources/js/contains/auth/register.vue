@@ -1,7 +1,10 @@
 <script>
-import { authMethods } from "@/state/helpers";
 import appConfig from "@/app.config";
-
+import {
+  required,
+  email,
+  minLength,
+} from "vuelidate/lib/validators";
 /**
  * Register component
  */
@@ -12,43 +15,54 @@ export default {
   },
   data() {
     return {
-      username: "",
-      email: "",
-      password: "",
+      typeform: {
+        username: "",
+        password: "",
+        email: "",
+      },
       regError: null,
-      tryingToRegister: false,
+      tryingToSubmit: false,
       isRegisterError: false,
-      registerSuccess: false
+      typesubmit: false,
     };
   },
+  validations: {
+    typeform: {
+      password: { required, minLength: minLength(6) },
+      email: { required, email },
+      username: { required },
+    }
+  },
   methods: {
-    ...authMethods,
     // Try to register the user in with the email, username
     // and password they provided.
-    tryToRegisterIn() {
-      this.tryingToRegister = true;
+    typeForm(e) {
+      this.typesubmit = true;
       // Reset the regError if it existed.
       this.regError = null;
+      this.isRegisterError = false;
+      this.$v.$touch()
+      if (this.$v.typeform.username.$error || this.$v.typeform.email.$error || this.$v.typeform.password.$error) {
+        return ;
+      }
+      this.tryingToSubmit = true;
       return (
         this.$store
           .dispatch("register", {
-              name: this.username,
-              email: this.email,
-              password: this.password,
-              password_confirmation: this.password
+              name: this.typeform.username,
+              email: this.typeform.email,
+              password: this.typeform.password,
+              password_confirmation: this.typeform.password
           })
           .then((res, status) => {
-            this.tryingToRegister = false;
+            this.typesubmit = false;
+            this.tryingToSubmit = false;
             this.isRegisterError = false;
-            this.registerSuccess = true;
-            if (this.registerSuccess) {
-              this.$router.push(
-                { name: "login" }
-              );
-            }
+            this.$router.push({ name: "login" });
           })
           .catch((error) => {
-            this.tryingToRegister = false;
+            this.typesubmit = false;
+            this.tryingToSubmit = false;
             this.regError = error ? error : "";
             this.isRegisterError = true;
           })
@@ -67,7 +81,6 @@ export default {
             <div class="bg-primary">
               <div class="text-primary text-center p-4">
                 <h5 class="text-white font-size-20">Free Register</h5>
-                <p class="text-white-50">Get your free Veltrix account now.</p>
                 <a href="/" class="logo logo-admin">
                   <img src="/images/logo-sm.png" height="24" alt="logo" />
                 </a>
@@ -77,51 +90,67 @@ export default {
             <div class="card-body p-4">
               <div class="p-3">
                 <b-alert
-                  v-model="registerSuccess"
-                  class="mt-3"
-                  variant="success"
-                  dismissible
-                >Registration successfull.</b-alert>
-
-                <b-alert
                   v-model="isRegisterError"
                   class="mt-3"
                   variant="danger"
                   dismissible
                 >{{regError}}</b-alert>
 
-                <b-form @submit.prevent="tryToRegisterIn" class="form-horizontal mt-4">
-                  <b-form-group id="username-group" label="Username" label-for="username">
+                <b-form action="#" @submit.prevent="typeForm" class="form-horizontal mt-4">
+                  <b-form-group id="username-group" label="Nombre" label-for="username">
                     <b-form-input
                       id="username"
-                      v-model="username"
+                      v-model="typeform.username"
                       type="text"
-                      placeholder="Enter name"
+                      placeholder="Enter Nombre"
+                      :class="{ 'is-invalid': typesubmit && $v.typeform.username.$error }"
                     ></b-form-input>
+                    <div v-if="typesubmit && $v.typeform.username.$error" class="invalid-feedback">
+                      <span v-if="!$v.typeform.username.required">Este Campo es obligatorio.</span>
+                    </div>
                   </b-form-group>
 
-                  <b-form-group id="email-group" label="Email address" label-for="email">
-                    <b-form-input id="email" v-model="email" type="email" placeholder="Enter email"></b-form-input>
+                  <b-form-group id="email-group" label="E-Mail" label-for="email">
+                    <b-form-input 
+                      id="email" 
+                      v-model="typeform.email" 
+                      type="email" 
+                      placeholder="Enter E-Mail"
+                      :class="{ 'is-invalid': typesubmit && $v.typeform.email.$error }"
+                    ></b-form-input>
+                    <div v-if="typesubmit && $v.typeform.email.$error" class="invalid-feedback">
+                      <span v-if="!$v.typeform.email.required">Este Campo es obligatorio.</span>
+                      <span v-if="!$v.typeform.email.email">Debe ser un e-mail válido.</span>
+                    </div>
                   </b-form-group>
 
-                  <b-form-group id="password-group" label="Password" label-for="password">
+                  <b-form-group id="password-group" label="Contraseña" label-for="password">
                     <b-form-input
                       id="password"
-                      v-model="password"
+                      v-model="typeform.password"
                       type="password"
-                      placeholder="Enter password"
+                      placeholder="Enter Contraseña"
+                      :class="{ 'is-invalid': typesubmit && $v.typeform.password.$error }"
                     ></b-form-input>
+                    <div v-if="typesubmit && $v.typeform.password.$error" class="invalid-feedback">
+                      <span v-if="!$v.typeform.password.required">Este Campo es obligatorio.</span>
+                      <span
+                        v-if="!$v.typeform.password.minLength"
+                      >La contraseña debe tener al menos 6 cracteres.</span>
+                    </div>
                   </b-form-group>
 
                   <div class="form-group mb-0 text-center">
                     <div class="col-12 text-right">
-                      <b-button type="submit" variant="primary" class="w-md">Register</b-button>
+                      <b-button type="submit" variant="primary" class="w-md" :disabled="tryingToSubmit">
+                        <i class="fa fa-spinner fa-spin" v-if="tryingToSubmit"></i> Register
+                      </b-button>
                     </div>
                   </div>
                   <div class="form-group mt-2 mb-0 row">
                     <div class="col-12 mt-4">
                       <p class="mb-0">
-                        By registering you agree to the Competition
+                        By registering you agree to the Software
                         <a
                           href="#"
                           class="text-primary"
@@ -144,7 +173,7 @@ export default {
               ©{{new Date().getFullYear()}} 
               <i
                 class="mdi mdi-heart text-danger"
-              ></i> by Competition Organizer
+              ></i> by Organizer
             </p>
           </div>
         </div>

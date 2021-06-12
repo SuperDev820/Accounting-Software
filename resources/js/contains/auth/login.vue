@@ -1,6 +1,11 @@
 <script>
 import appConfig from "@/app.config";
 import {mapActions, mapGetters} from 'vuex'
+import {
+  required,
+  email,
+  minLength,
+} from "vuelidate/lib/validators";
 /**
  * Login component
  */
@@ -12,16 +17,24 @@ export default {
   components: {},
   data() {
     return {
-      email: "",
-      password: "",
+      typeform: {
+        password: "",
+        email: "",
+      },
       authError: null,
-      tryingToLogIn: false,
-      isAuthError: false
+      tryingToSubmit: false,
+      isAuthError: false,
+      typesubmit: false,
     };
+  },
+  validations: {
+    typeform: {
+      password: { required, minLength: minLength(6) },
+      email: { required, email },
+    }
   },
   computed: {
     ...mapGetters([
-      'currentRole',
     ]),
   },
   methods: {
@@ -30,29 +43,30 @@ export default {
     ]),
     // Try to log the user in with the username
     // and password they provided.
-    tryToLogIn() {
-      this.tryingToLogIn = true;
+    typeForm(e) {
+      this.typesubmit = true;
       // Reset the authError if it existed.
       this.authError = null;
+      this.isAuthError = false;
+      this.$v.$touch()
+      if (this.$v.typeform.email.$error || this.$v.typeform.password.$error) {
+        return ;
+      }
+      this.tryingToSubmit = true;
       return (
         this.login({
-            email: this.email,
-            password: this.password
+            email: this.typeform.email,
+            password: this.typeform.password
           })
           .then((res) => {
-            console.log(this.currentRole)
-            if (this.currentRole == 'Admin') {
-              this.$router.push({name: "Users"});
-            } else if (this.currentRole == 'Judge') {
-              this.$router.push({name: "Judge"});
-            } else {
-              this.$router.push({name: "Home"});
-            }
-            this.tryingToLogIn = false;
+            this.typesubmit = false;
+            this.tryingToSubmit = false;
             this.isAuthError = false;
+            this.$router.push({name: "Home"});
           })
           .catch(error => {
-            this.tryingToLogIn = false;
+            this.typesubmit = false;
+            this.tryingToSubmit = false;
             this.authError = error ? error : "";
             this.isAuthError = true;
           })
@@ -86,29 +100,40 @@ export default {
                   dismissible
                 >{{authError}}</b-alert>
 
-                <b-form @submit.prevent="tryToLogIn" class="form-horizontal mt-4">
-                  <b-form-group id="input-group-1" label="Email" label-for="input-1">
-                    <b-form-input
-                      id="input-1"
-                      v-model="email"
+                <form action="#" @submit.prevent="typeForm" class="form-horizontal mt-4">
+                  <div class="form-group">
+                    <label>E-Mail</label>
+                    <input
+                      v-model="typeform.email"
                       type="email"
-                      placeholder="Enter email"
-                    ></b-form-input>
-                  </b-form-group>
+                      name="email"
+                      class="form-control"
+                      placeholder="Enter E-Mail"
+                      :class="{ 'is-invalid': typesubmit && $v.typeform.email.$error }"
+                    />
+                    <div v-if="typesubmit && $v.typeform.email.$error" class="invalid-feedback">
+                      <span v-if="!$v.typeform.email.required">Este Campo es obligatorio.</span>
+                      <span v-if="!$v.typeform.email.email">Debe ser un e-mail válido.</span>
+                    </div>
+                  </div>
 
-                  <b-form-group
-                    id="input-group-2"
-                    label="Password"
-                    label-for="input-2"
-                    class="mb-3"
-                  >
-                    <b-form-input
-                      id="input-2"
-                      v-model="password"
+                  <div class="form-group">
+                    <label>Contraseña</label>
+                    <input
+                      v-model="typeform.password"
                       type="password"
-                      placeholder="Enter password"
-                    ></b-form-input>
-                  </b-form-group>
+                      name="password"
+                      class="form-control"
+                      placeholder="Enter Contraseña"
+                      :class="{ 'is-invalid': typesubmit && $v.typeform.password.$error }"
+                    />
+                    <div v-if="typesubmit && $v.typeform.password.$error" class="invalid-feedback">
+                      <span v-if="!$v.typeform.password.required">Este Campo es obligatorio.</span>
+                      <span
+                        v-if="!$v.typeform.password.minLength"
+                      >La contraseña debe tener al menos 6 cracteres.</span>
+                    </div>
+                  </div>
 
                   <div class="form-group row">
                     <div class="col-sm-6">
@@ -120,7 +145,9 @@ export default {
                       >Remember me</b-form-checkbox>
                     </div>
                     <div class="col-sm-6 text-right">
-                      <b-button type="submit" variant="primary" class="w-md">Log In</b-button>
+                      <b-button type="submit" variant="primary" class="w-md" :disabled="tryingToSubmit">
+                        <i class="fa fa-spinner fa-spin" v-if="tryingToSubmit"></i> Log In
+                      </b-button>
                     </div>
                   </div>
 
@@ -131,7 +158,7 @@ export default {
                       </router-link>
                     </div>
                   </div>
-                </b-form>
+                </form>
               </div>
             </div>
             <!-- end card-body -->
@@ -147,7 +174,7 @@ export default {
               {{new Date().getFullYear()}} 
               <i
                 class="mdi mdi-heart text-danger"
-              ></i> by Competition Organizer
+              ></i> by Organizer
             </p>
           </div>
         </div>
