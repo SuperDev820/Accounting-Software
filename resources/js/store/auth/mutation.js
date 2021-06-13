@@ -16,7 +16,6 @@ const mutations = {
   [type.AUTH_SET_USER] (state, data) {
       state.isAuthenticated = true;
       state.userId = data.userId;
-      state.userRole = data.userRole;
       state.token = data.token;
       state.errors = {
           login: [],
@@ -24,17 +23,9 @@ const mutations = {
       };
     //   console.log(data.token);
       JwtService.setToken(data.token);
-      JwtService.setRole(data.userRole);
   },
   [type.AUTH_LOGOUT] (state, payload) {
       JwtService.unsetToken();
-      JwtService.unsetRole();
-
-      JwtService.unsetCurrentCompetition();
-      JwtService.unsetCurrentCategory();
-      JwtService.unsetCurrentModality();
-      JwtService.unsetCurrentRound();
-      JwtService.unsetCurrentHeat();
   },
   [type.AUTH_RESET_STATE] (state, payload) {
     state.isAuthenticated = false;

@@ -63,7 +63,7 @@ export default {
           .catch((error) => {
             this.typesubmit = false;
             this.tryingToSubmit = false;
-            this.regError = error ? error : "";
+            this.regError = error ? error.data : "";
             this.isRegisterError = true;
           })
       );
@@ -81,6 +81,7 @@ export default {
             <div class="bg-primary">
               <div class="text-primary text-center p-4">
                 <h5 class="text-white font-size-20">Free Register</h5>
+                <p class="text-white-50">Register to start.</p>
                 <a href="/" class="logo logo-admin">
                   <img src="/images/logo-sm.png" height="24" alt="logo" />
                 </a>

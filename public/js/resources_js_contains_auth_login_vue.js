@@ -136,12 +136,12 @@ __webpack_require__.r(__webpack_exports__);
         _this.isAuthError = false;
 
         _this.$router.push({
-          name: "Home"
+          name: "home"
         });
       })["catch"](function (error) {
         _this.typesubmit = false;
         _this.tryingToSubmit = false;
-        _this.authError = error ? error : "";
+        _this.authError = error ? error.data : "";
         _this.isAuthError = true;
       });
     }
@@ -952,7 +952,7 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("p", { staticClass: "text-white-50" }, [
-          _vm._v("Sign in to continue to Veltrix.")
+          _vm._v("Sign in to continue.")
         ]),
         _vm._v(" "),
         _c("a", { staticClass: "logo logo-admin", attrs: { href: "/" } }, [

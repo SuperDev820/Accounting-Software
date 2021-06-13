@@ -1,13 +1,13 @@
 <script>
-	// import Layout from "../subcomponent/layout";
+	import Layout from "../../layouts/horizontal";
 	import appConfig from "@/app.config";
-  import PageHeader from "@/components/page-header";
+  import PageHeader from "../../layouts/page-header";
 
   import { mapActions, mapGetters } from 'vuex';
 
 	export default {
 		page: {
-        title: "LISTADO USUARIOS",
+        title: "Empresas",
         meta: [{ name: "description", content: appConfig.description }]
     },
     components: {
@@ -16,14 +16,14 @@
     },
     data() {
       return {
-        title: "LISTADO USUARIOS",
+        title: "Empresas",
         items: [
           {
             text: "Home",
-            href: "/admin"
+            href: "/"
           },
           {
-            text: "Listado Usuarios",
+            text: "Empresas",
             active: true
           }
         ],
@@ -90,7 +90,7 @@
         <router-link to="/admin/user/create"
           class="btn btn-info btn-block d-inline-block"
         >
-          <i class="fas fa-plus mr-1"></i> AÑADIR USUARIO
+          <i class="fas fa-plus mr-1"></i> AÑADIR EMPRESA
         </router-link>
       </div>
     </PageHeader>

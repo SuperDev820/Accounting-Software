@@ -1,5 +1,5 @@
 const getters = {
-    getLayoutType(state) {
+    layoutType(state) {
         return state.layoutType;
     }
 };

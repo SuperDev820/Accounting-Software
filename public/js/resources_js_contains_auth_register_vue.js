@@ -91,7 +91,7 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         _this.typesubmit = false;
         _this.tryingToSubmit = false;
-        _this.regError = error ? error : "";
+        _this.regError = error ? error.data : "";
         _this.isRegisterError = true;
       });
     }
@@ -914,6 +914,10 @@ var staticRenderFns = [
       _c("div", { staticClass: "text-primary text-center p-4" }, [
         _c("h5", { staticClass: "text-white font-size-20" }, [
           _vm._v("Free Register")
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "text-white-50" }, [
+          _vm._v("Register to start.")
         ]),
         _vm._v(" "),
         _c("a", { staticClass: "logo logo-admin", attrs: { href: "/" } }, [

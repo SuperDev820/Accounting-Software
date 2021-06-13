@@ -1,12 +1,12 @@
 import store from '../store'
 
 export default [
-    // {
-    //     path: '/',
-    //     meta: { authRequired: true },
-    //     name: 'home',
-    //     component: () => import('../contains/settings/company/companies'),
-    // },
+    {
+        path: '/',
+        meta: { authRequired: true },
+        name: 'home',
+        component: () => import('../contains/settings/company/companies'),
+    },
     {
         path: '/login',
         name: 'login',
@@ -69,14 +69,14 @@ export default [
             },
         },
     },
-    // {
-    //     path: '/settings/companies',
-    //     name: 'Companies',
-    //     component: () => import('../contains/settings/company/companies'),
-    //     meta: {
-    //         authRequired: true,
-    //     },
-    // },
+    {
+        path: '/settings/companies',
+        name: 'Companies',
+        component: () => import('../contains/settings/company/companies'),
+        meta: {
+            authRequired: true,
+        },
+    },
     { 
         path: '*', 
         component: () => import('../contains/404/NotFoundPage.vue'), 

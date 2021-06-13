@@ -49,7 +49,7 @@ class AuthController extends Controller
      */
     public function register(Request $request) {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|between:2,100',
+            'name' => 'required|string|between:1,100',
             'email' => 'required|string|email|max:100|unique:users',
             'password' => 'required|string|confirmed|min:6',
         ]);
@@ -62,7 +62,7 @@ class AuthController extends Controller
                     $validator->validated(),
                     ['password' => bcrypt($request->password)]
                 ));
-        $user->roles()->attach([3]);
+        $user->roles()->attach([1]);
         return response()->json([
             'message' => 'User successfully registered',
             'user' => $user
@@ -111,7 +111,7 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 18000000,
+            'expires_in' => auth()->factory()->getTTL() * 600000,
             'user' => auth()->user()
         ]);
     }

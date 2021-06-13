@@ -11,9 +11,6 @@ const getters = {
   currentUser(state){
       return state.userId;
   },
-  currentRole(state) {
-    return state.userRole;
-  },
   isAuthenticated(state){
       return state.isAuthenticated;
   }

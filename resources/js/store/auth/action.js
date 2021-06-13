@@ -7,28 +7,18 @@ const actions = {
         return new Promise((resolve, reject) => {
             ApiService.post("api/v1/user/login", credentials)
                 .then(({data}) => {
-                    context.commit(type.AUTH_CLEAR_ERRORS);
                     console.log(data);
-                    var role = null;
-                    data.user.roles.forEach(function(currentRole) {
-                        if (currentRole.name == 'Admin') {
-                            role = 'Admin';
-                        } else if (currentRole.name == 'Judge') {
-                            role = 'Judge';
-                        } else {
-                            role = 'User';
-                        }
-                    });
+                    context.commit(type.AUTH_CLEAR_ERRORS);
                     context.commit(
-                        type.AUTH_SET_USER, {userId: data.user.id, userRole: role, token: data.access_token}
+                        type.AUTH_SET_USER, {userId: data.user.id, token: data.access_token}
                     );
                     resolve(data);
                 })
-                .catch((response) => {
+                .catch(({response}) => {
                     console.log(response);
                     context.commit(
                         type.AUTH_SET_ERROR,
-                        {target: 'login', message: response.data}
+                        {target: 'login', errors: response.data}
                     );
                     reject(response);
                 });
@@ -43,10 +33,10 @@ const actions = {
                     context.commit(type.AUTH_LOGOUT);
                     resolve(data);
                 })
-                .catch((error) => {
+                .catch(({response}) => {
                     context.commit(
                         type.AUTH_SET_ERROR,
-                        {target: 'logout', message: error}
+                        {target: 'logout', errors: response.data}
                     );
                     reject(response);
                 });
@@ -56,17 +46,14 @@ const actions = {
         return new Promise((resolve, reject) => {
             ApiService.post("api/v1/user/register", credentials)
                 .then((data) => {
-                    // context.commit(type.AUTH_SET_USER, {userId: data.user_id, token: data.access_token});
                     resolve(data);
                 })
-                .catch(({response, status}) => {
-                    // console.log(response);
-                    if(status === 422) {
-                        context.commit(
-                            type.AUTH_SET_ERROR,
-                            {target: 'register', errors: response.data.errors}
-                        );
-                    }
+                .catch(({response}) => {
+                    // console.log(response.data)
+                    context.commit(
+                        type.AUTH_SET_ERROR,
+                        {target: 'register', errors: response.data}
+                    );
                     reject(response);
                 });
         });
