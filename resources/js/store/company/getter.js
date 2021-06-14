@@ -1,9 +1,9 @@
 const getters = {
-    getUsers(state) {
-        return state.users;
+    companies(state) {
+        return state.companies;
     },
-    getUser(state) {
-        return state.user;
+    company(state) {
+        return state.company;
     },
   };
   

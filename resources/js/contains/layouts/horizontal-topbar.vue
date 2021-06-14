@@ -48,23 +48,23 @@ export default {
       <div class="d-flex">
         <!-- LOGO -->
         <div class="navbar-brand-box">
-          <a href="/" class="logo logo-dark">
+          <router-link to="/" class="logo logo-dark">
             <span class="logo-sm">
               <img src="/images/logo-sm.png" alt height="22" />
             </span>
             <span class="logo-lg">
               <img src="/images/logo-dark.png" alt height="45" />
             </span>
-          </a>
+          </router-link>
 
-          <a href="/" class="logo logo-light">
+          <router-link to="/" class="logo logo-light">
             <span class="logo-sm">
               <img src="/images/logo-sm.png" alt height="22" />
             </span>
             <span class="logo-lg">
               <img src="/images/logo-light.png" alt height="45" />
             </span>
-          </a>
+          </router-link>
         </div>
 
         <button

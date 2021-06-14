@@ -1,87 +1,79 @@
 <script>
-import Layout from "../subcomponent/layout";
-import PageHeader from "@/components/page-header";
+import Layout from "../../layouts/horizontal";
 import appConfig from "@/app.config";
-
-import Multiselect from "vue-multiselect";
+import PageHeader from "../../layouts/page-header";
 
 import { mapActions, mapGetters } from 'vuex';
 
 import {
   required,
-  email,
-  minLength,
-  sameAs,
-  maxLength,
-  minValue,
-  maxValue,
-  numeric,
-  url,
-  alphaNum
 } from "vuelidate/lib/validators";
 
 export default {
   page: {
-    title: "EDITAR USUARIO",
+    title: "Detalle de Empresa",
     meta: [{ name: "description", content: appConfig.description }]
   },
-  components: { Layout, PageHeader, Multiselect },
+  components: { Layout, PageHeader },
   data() {
     return {
-      title: "EDITAR USUARIO",
+      title: "Detalle de Empresa",
       items: [
         {
           text: "Home",
-          href: "/admin"
+          href: "/"
         },
         {
-          text: "Listado Usuario",
-          href: "/admin/users"
+          text: "Empresas",
+          href: "/settings/companies"
         },
         {
-          text: "Modificar Datos Usuario",
+          text: "Detalle de Empresa",
           active: true
         }
-      ],
-      roleOptions: [
-        "Admin",
-        "Judge",
-        "User",
       ],
       isError: false,
       Error: null,
       typeform: {
+        code: "",
         name: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-        roles: "",
+        image: "",
+        direction: "",
+        title: "",
+        return: "",
       },
       typesubmit: false,
+      tryingToSubmit: false,
     };
   },
   validations: {
     typeform: {
-      name: { required },
-      password: {},
-      confirmPassword: { sameAsPassword: sameAs("password") },
-      email: { required, email },
-      roles: { required },
+      code: { required },
     }
   },
   mounted() {
-    this.getUserById(this.$route.params.userId);
+    this.getCompanyById(this.$route.params.companyId);
   },
   computed: {
     ...mapGetters([
-      'getUser'
+      'company',
     ]),
+  },
+  watch: {
+    company: function () {
+      this.typeform.code = this.company.IdEmpresa
+      this.typeform.name = this.company.Descripcion
+      this.typeform.image = this.company.Ruta
+      this.typeform.title = this.company.Titulo
+      this.typeform.direction = this.company.Direccion
+      this.typeform.return = this.company.Remite
+    },
   },
   methods: {
     ...mapActions([
-      'getUserById',
-      'updateUser'
-    ]),
+        'updateCompany',
+        'getCompanyById',
+      ]),
     /**
      * Validation type submit
      */
@@ -91,26 +83,30 @@ export default {
       this.isError = false;
       this.Error = null;
       // stop here if form is invalid
-      this.$v.$touch();
-      if (this.$v.typeform.name.$error || this.$v.typeform.email.$error || this.$v.typeform.confirmPassword.$error || this.$v.typeform.roles.$error) {
+      this.$v.$touch()
+      if (this.$v.typeform.code.$error) {
         return ;
       }
+      this.tryingToSubmit = true;
       return (
-        this.updateUser({
-            id: this.getUser.id,
+        this.updateCompany({
+            id: this.$route.params.companyId,
+            IdEmpresa: this.typeform.code,
             name: this.typeform.name,
-            email: this.typeform.email,
-            password: this.typeform.password,
-            password_confirmation: this.typeform.confirmPassword,
-            roles: this.typeform.roles,
+            image: this.typeform.image,
+            title: this.typeform.title,
+            direction: this.typeform.direction,
+            return: this.typeform.return,
           })
           .then((res) => {
-            this.$router.push({name: "Users"});
+            this.$router.push({name: "Companies"});
             this.typesubmit = false;
+            this.tryingToSubmit = false;
           })
           .catch(error => {
             this.typesubmit = false;
-            this.Error = error ? error : "";
+            this.tryingToSubmit = false;
+            this.Error = error ? error.data : "";
             this.isError = true;
           })
       );
@@ -135,96 +131,68 @@ export default {
             >{{ Error }}</b-alert>
             <form action="#" @submit.prevent="typeForm">
               <div class="form-group">
-                <label>Nombre</label>
+                <label>Código: </label>
                 <input
-                  v-model="typeform.name=getUser.name"
+                  v-model="typeform.code"
                   type="text"
                   class="form-control"
-                  placeholder="Nombre"
-                  name="name"
-                  :class="{ 'is-invalid': typesubmit && $v.typeform.name.$error }"
+                  :class="{ 'is-invalid': typesubmit && $v.typeform.code.$error }"
                 />
-                <div v-if="typesubmit && $v.typeform.name.$error" class="invalid-feedback">
-                  <span v-if="!$v.typeform.name.required">Este Campo es obligatorio.</span>
+                <div v-if="typesubmit && $v.typeform.code.$error" class="invalid-feedback">
+                  <span v-if="!$v.typeform.code.required">Este Campo es obligatorio.</span>
                 </div>
               </div>
 
               <div class="form-group">
-                <label>E-Mail</label>
-                <div>
-                  <input
-                    v-model="typeform.email=getUser.email"
-                    type="email"
-                    name="email"
-                    class="form-control"
-                    :class="{ 'is-invalid': typesubmit && $v.typeform.email.$error }"
-                    placeholder="Enter a valid email"
-                  />
-                  <div v-if="typesubmit && $v.typeform.email.$error" class="invalid-feedback">
-                    <span v-if="!$v.typeform.email.required">Este Campo es obligatorio.</span>
-                    <span v-if="!$v.typeform.email.email">Debe ser un e-mail válido..</span>
-                  </div>
-                </div>
+                <label>Nombre: </label>
+                <input
+                  v-model="typeform.name"
+                  type="text"
+                  class="form-control"
+                />
               </div>
 
               <div class="form-group">
-                <label>Contraseña</label>
-                <div>
-                  <input
-                    v-model="typeform.password"
-                    type="password"
-                    name="password"
-                    class="form-control"
-                    :class="{ 'is-invalid': typesubmit && $v.typeform.password.$error }"
-                    placeholder="Contraseña"
-                  />
-                  <div v-if="typesubmit && $v.typeform.password.$error" class="invalid-feedback">
-                    <span v-if="!$v.typeform.password.required">Este Campo es obligatorio.</span>
-                    <span
-                      v-if="!$v.typeform.password.minLength"
-                    >La contraseña debe tener al menos 6 cracteres.</span>
-                  </div>
-                </div>
+                <label>Nombre Imagen: </label>
+                <input
+                  v-model="typeform.image"
+                  type="text"
+                  class="form-control"
+                />
               </div>
+
               <div class="form-group">
-                <label>Confirmar Contraseña</label>
-                <div>
-                  <input
-                    v-model="typeform.confirmPassword"
-                    type="password"
-                    name="confirmPassword"
-                    class="form-control"
-                    :class="{ 'is-invalid': typesubmit && $v.typeform.confirmPassword.$error }"
-                    placeholder="Confirmar Contraseña"
-                  />
-                  <div
-                    v-if="typesubmit && $v.typeform.confirmPassword.$error"
-                    class="invalid-feedback"
-                  >
-                    <span v-if="!$v.typeform.confirmPassword.required">Este Campo es obligatorio.</span>
-                    <span
-                      v-else-if="!$v.typeform.confirmPassword.sameAsPassword"
-                    >La confirmación de contraseña es erroena.</span>
-                  </div>
-                </div>
+                <label>Título: </label>
+                <input
+                  v-model="typeform.title"
+                  type="text"
+                  class="form-control"
+                />
               </div>
-              <div>
-                <label>Tipo</label>
-                <multiselect 
-                  v-model="typeform.roles=getUser.roleNames"
-                  :options="roleOptions"
-                  :multiple="true"
-                  :class="{ 'is-invalid': typesubmit && $v.typeform.roles.$error }"
-                ></multiselect>
-                <div v-if="typesubmit && $v.typeform.roles.$error" class="invalid-feedback">
-                  <span v-if="!$v.typeform.roles.required">Este Campo es obligatorio.</span>
-                </div>
+
+              <div class="form-group">
+                <label>Dirección: </label>
+                <textarea
+                  v-model="typeform.direction"
+                  class="form-control"
+                ></textarea>
               </div>
-              
+
+              <div class="form-group">
+                <label>Remite: </label>
+                <input
+                  v-model="typeform.return"
+                  type="text"
+                  class="form-control"
+                />
+              </div>
+
               <div class="form-group mt-5 mb-0">
                 <div>
-                  <button type="submit" class="btn btn-primary">Guardar</button>
-                  <router-link to="/admin/users" class="btn btn-secondary m-l-5 ml-1">Cancelar</router-link>
+                  <button type="submit" class="btn btn-primary" :disabled="tryingToSubmit">
+                    <i class="fa fa-spinner fa-spin" v-if="tryingToSubmit"></i> Guardar
+                  </button>
+                  <router-link to="/settings/companies" class="btn btn-secondary m-l-5 ml-1">Cancelar</router-link>
                 </div>
               </div>
             </form>

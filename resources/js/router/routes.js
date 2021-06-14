@@ -77,6 +77,22 @@ export default [
             authRequired: true,
         },
     },
+    {
+        path: '/settings/company/create',
+        name: 'CompanyCreate',
+        component: () => import('../contains/settings/company/company-create'),
+        meta: {
+            authRequired: true,
+        },
+    },
+    {
+        path: '/settings/company/edit/:companyId',
+        name: 'CompanyEdit',
+        component: () => import('../contains/settings/company/company-edit'),
+        meta: {
+            authRequired: true,
+        },
+    },
     { 
         path: '*', 
         component: () => import('../contains/404/NotFoundPage.vue'), 

@@ -36,16 +36,16 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'api'], function(){
 
     //Admin actions
     Route::group([ 'prefix' => 'admin', 'middleware' => 'isadmin' ], function(){
-        /* Get all users details*/
-        Route::get('users', 'App\Http\Controllers\Api\v1\UserController@getAll');
-        /* Add a user */
-        Route::post('user/create', 'App\Http\Controllers\Api\v1\UserController@create');
-        /* Update a user */
-        Route::put('user/update', 'App\Http\Controllers\Api\v1\UserController@update');
-        /* Get user detail by id */
-        Route::get('user/{userId}', 'App\Http\Controllers\Api\v1\UserController@getById');
-        /* delete user by id */
-        Route::delete('user/delete/{userId}', 'App\Http\Controllers\Api\v1\UserController@delete');
+        /* Get all companies details*/
+        Route::get('companies', 'App\Http\Controllers\Api\v1\CompanyController@getAll');
+        /* Add a company */
+        Route::post('company/create', 'App\Http\Controllers\Api\v1\CompanyController@create');
+        /* Update a company */
+        Route::put('company/update', 'App\Http\Controllers\Api\v1\CompanyController@update');
+        /* Get company detail by id */
+        Route::get('company/{companyId}', 'App\Http\Controllers\Api\v1\CompanyController@getById');
+        /* delete company by id */
+        Route::delete('company/delete/{companyId}', 'App\Http\Controllers\Api\v1\CompanyController@delete');
     });
 
 });

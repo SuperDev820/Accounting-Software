@@ -7,7 +7,7 @@
 
 	export default {
 		page: {
-        title: "Home",
+        title: "Listado de Previsiones de Cobro",
         meta: [{ name: "description", content: appConfig.description }]
     },
     components: {
@@ -16,7 +16,7 @@
     },
     data() {
       return {
-        title: "Home",
+        title: "Listado de Previsiones de Cobro",
         items: [
           {
             text: "Home",
@@ -29,36 +29,36 @@
         pageOptions: [10, 25, 50, 100],
         filter: null,
         filterOn: [],
-        sortBy: "name",
+        sortBy: "",
         sortDesc: false,
         fields: [
-          { label: "Nombre", key: "email", sortable: true },
-          { label: "Tipo", key: "roles", sortable: false },
+          { label: "Código", key: "code", sortable: false },
+          { label: "Cliente", key: "Cliente", sortable: false },
+          { label: "Proveedor", key: "Proveedor", sortable: false },
+          { label: "Barco", key: "Barco", sortable: false },
+          { label: "F. Apertura", key: "Apertura", sortable: false },
           { label: "Acciones", key: "actions", sortable: false }
         ],
         deletingId: 0,
+        tableData: []
       }
     },
     computed: {
       ...mapGetters([
-        'getUsers'
       ]),
       /**
        * Total no. of records
        */
       rows() {
-        return this.getUsers.length;
+        return this.tableData.length;
       }
     },
     mounted() {
       // Set the initial number of items
-      this.totalRows = this.getUsers.length;
-      this.initUsers();
+      this.totalRows = this.tableData.length;
     },
     methods: {
       ...mapActions([
-        'initUsers',
-        'deleteUser',
       ]),
       /**
        * Search the table data with search input
@@ -72,7 +72,7 @@
         this.deletingId = id;
       },
       realDelete() {
-        this.deleteUser(this.deletingId);
+        // this.deleteUser(this.deletingId);
         this.$bvModal.hide('delete-modal');
       }
     }
@@ -81,21 +81,12 @@
 <template>
   <Layout>
     <PageHeader :title="title" :items="items">
-      <div class="float-right">
-        <router-link to="/admin/user/create"
-          class="btn btn-info btn-block d-inline-block"
-        >
-          <i class="fas fa-plus mr-1"></i> AÑADIR EMPRESA
-        </router-link>
-      </div>
     </PageHeader>
 
     <div class="row">
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Listado de Empresas</h4>
-            <p class="card-title-desc"></p>
             <div class="row mb-md-2">
               <div class="col-sm-12 col-md-6">
                 <div id="tickets-table_length" class="dataTables_length">
@@ -124,7 +115,7 @@
             <!-- Table -->
             <div class="table-responsive mb-0">
               <b-table
-                :items="getUsers"
+                :items="tableData"
                 :fields="fields"
                 responsive="sm"
                 :per-page="perPage"
@@ -135,11 +126,6 @@
                 :filter-included-fields="filterOn"
                 @filtered="onFiltered"
               >
-                <template #cell(roles)="row">
-                  <span class="badge badge-success" style="font-size: 85%;" v-for="(role, index) in row.item.roles" :key="index">
-                    {{ role.name }}
-                  </span>
-                </template>
                 <template #cell(actions)="row">
                   <router-link :to="{ name: 'UserEdit', params: { userId: row.item.id }}" class="btn btn-sm btn-success">
                     <i class="far fa-edit"></i>

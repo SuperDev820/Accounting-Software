@@ -7,7 +7,7 @@
 
 	export default {
 		page: {
-        title: "Empresas",
+        title: "Listado de Empresas",
         meta: [{ name: "description", content: appConfig.description }]
     },
     components: {
@@ -16,7 +16,7 @@
     },
     data() {
       return {
-        title: "Empresas",
+        title: "Listado de Empresas",
         items: [
           {
             text: "Home",
@@ -33,12 +33,11 @@
         pageOptions: [10, 25, 50, 100],
         filter: null,
         filterOn: [],
-        sortBy: "name",
+        sortBy: "IdEmpresa",
         sortDesc: false,
         fields: [
-          { label: "Nombre", key: "name", sortable: true },
-          { label: "Email",  key: "email", sortable: false },
-          { label: "Tipo", key: "roles", sortable: false },
+          { label: "Código", key: "IdEmpresa", sortable: true },
+          { label: "Nombre", key: "Descripcion", sortable: true },
           { label: "Acciones", key: "actions", sortable: false }
         ],
         deletingId: 0,
@@ -46,24 +45,24 @@
     },
     computed: {
       ...mapGetters([
-        'getUsers'
+        'companies'
       ]),
       /**
        * Total no. of records
        */
       rows() {
-        return this.getUsers.length;
+        return this.companies.length;
       }
     },
     mounted() {
       // Set the initial number of items
-      this.totalRows = this.getUsers.length;
-      this.initUsers();
+      this.totalRows = this.companies.length;
+      this.getCompanies();
     },
     methods: {
       ...mapActions([
-        'initUsers',
-        'deleteUser',
+        'getCompanies',
+        'deleteCompany',
       ]),
       /**
        * Search the table data with search input
@@ -77,7 +76,7 @@
         this.deletingId = id;
       },
       realDelete() {
-        this.deleteUser(this.deletingId);
+        this.deleteCompany(this.deletingId);
         this.$bvModal.hide('delete-modal');
       }
     }
@@ -87,7 +86,7 @@
   <Layout>
     <PageHeader :title="title" :items="items">
       <div class="float-right">
-        <router-link to="/admin/user/create"
+        <router-link to="/settings/company/create"
           class="btn btn-info btn-block d-inline-block"
         >
           <i class="fas fa-plus mr-1"></i> AÑADIR EMPRESA
@@ -99,8 +98,6 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Listado de Empresas</h4>
-            <p class="card-title-desc"></p>
             <div class="row mb-md-2">
               <div class="col-sm-12 col-md-6">
                 <div id="tickets-table_length" class="dataTables_length">
@@ -129,7 +126,7 @@
             <!-- Table -->
             <div class="table-responsive mb-0">
               <b-table
-                :items="getUsers"
+                :items="companies"
                 :fields="fields"
                 responsive="sm"
                 :per-page="perPage"
@@ -140,13 +137,8 @@
                 :filter-included-fields="filterOn"
                 @filtered="onFiltered"
               >
-                <template #cell(roles)="row">
-                  <span class="badge badge-success" style="font-size: 85%;" v-for="(role, index) in row.item.roles" :key="index">
-                    {{ role.name }}
-                  </span>
-                </template>
                 <template #cell(actions)="row">
-                  <router-link :to="{ name: 'UserEdit', params: { userId: row.item.id }}" class="btn btn-sm btn-success">
+                  <router-link :to="{ name: 'CompanyEdit', params: { companyId: row.item.id }}" class="btn btn-sm btn-success">
                     <i class="far fa-edit"></i>
                   </router-link>
                   <b-button size="sm" variant="danger" @click="setId(row.item.id)" v-b-modal.delete-modal>
@@ -185,3 +177,9 @@
     </b-modal>
   </Layout>
 </template>
+
+<style>
+  .table thead tr {
+    background-color: #c7e6fd;
+  }
+</style>

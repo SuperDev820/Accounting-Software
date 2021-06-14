@@ -76,7 +76,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   page: {
-    title: "Home",
+    title: "Listado de Previsiones de Cobro",
     meta: [{
       name: "description",
       content: _app_config__WEBPACK_IMPORTED_MODULE_4__.description
@@ -88,7 +88,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      title: "Home",
+      title: "Listado de Previsiones de Cobro",
       items: [{
         text: "Home",
         active: true
@@ -99,38 +99,50 @@ __webpack_require__.r(__webpack_exports__);
       pageOptions: [10, 25, 50, 100],
       filter: null,
       filterOn: [],
-      sortBy: "name",
+      sortBy: "",
       sortDesc: false,
       fields: [{
-        label: "Nombre",
-        key: "email",
-        sortable: true
+        label: "Código",
+        key: "code",
+        sortable: false
       }, {
-        label: "Tipo",
-        key: "roles",
+        label: "Cliente",
+        key: "Cliente",
+        sortable: false
+      }, {
+        label: "Proveedor",
+        key: "Proveedor",
+        sortable: false
+      }, {
+        label: "Barco",
+        key: "Barco",
+        sortable: false
+      }, {
+        label: "F. Apertura",
+        key: "Apertura",
         sortable: false
       }, {
         label: "Acciones",
         key: "actions",
         sortable: false
       }],
-      deletingId: 0
+      deletingId: 0,
+      tableData: []
     };
   },
-  computed: (0,E_Mikel_Accounting_Software_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__.default)((0,E_Mikel_Accounting_Software_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__.default)({}, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapGetters)(['getUsers'])), {}, {
+  computed: (0,E_Mikel_Accounting_Software_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__.default)((0,E_Mikel_Accounting_Software_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__.default)({}, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapGetters)([])), {}, {
     /**
      * Total no. of records
      */
     rows: function rows() {
-      return this.getUsers.length;
+      return this.tableData.length;
     }
   }),
   mounted: function mounted() {
     // Set the initial number of items
-    this.totalRows = this.getUsers.length;
-    this.initUsers();
+    this.totalRows = this.tableData.length;
   },
-  methods: (0,E_Mikel_Accounting_Software_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__.default)((0,E_Mikel_Accounting_Software_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__.default)({}, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapActions)(['initUsers', 'deleteUser'])), {}, {
+  methods: (0,E_Mikel_Accounting_Software_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__.default)((0,E_Mikel_Accounting_Software_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__.default)({}, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapActions)([])), {}, {
     /**
      * Search the table data with search input
      */
@@ -143,7 +155,7 @@ __webpack_require__.r(__webpack_exports__);
       this.deletingId = id;
     },
     realDelete: function realDelete() {
-      this.deleteUser(this.deletingId);
+      // this.deleteUser(this.deletingId);
       this.$bvModal.hide('delete-modal');
     }
   })
@@ -1286,37 +1298,12 @@ var render = function() {
   return _c(
     "Layout",
     [
-      _c("PageHeader", { attrs: { title: _vm.title, items: _vm.items } }, [
-        _c(
-          "div",
-          { staticClass: "float-right" },
-          [
-            _c(
-              "router-link",
-              {
-                staticClass: "btn btn-info btn-block d-inline-block",
-                attrs: { to: "/admin/user/create" }
-              },
-              [
-                _c("i", { staticClass: "fas fa-plus mr-1" }),
-                _vm._v(" AÑADIR EMPRESA\n      ")
-              ]
-            )
-          ],
-          1
-        )
-      ]),
+      _c("PageHeader", { attrs: { title: _vm.title, items: _vm.items } }),
       _vm._v(" "),
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-12" }, [
           _c("div", { staticClass: "card" }, [
             _c("div", { staticClass: "card-body" }, [
-              _c("h4", { staticClass: "card-title" }, [
-                _vm._v("Listado de Empresas")
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "card-title-desc" }),
-              _vm._v(" "),
               _c("div", { staticClass: "row mb-md-2" }, [
                 _c("div", { staticClass: "col-sm-12 col-md-6" }, [
                   _c(
@@ -1391,7 +1378,7 @@ var render = function() {
                 [
                   _c("b-table", {
                     attrs: {
-                      items: _vm.getUsers,
+                      items: _vm.tableData,
                       fields: _vm.fields,
                       responsive: "sm",
                       "per-page": _vm.perPage,
@@ -1417,28 +1404,6 @@ var render = function() {
                       filtered: _vm.onFiltered
                     },
                     scopedSlots: _vm._u([
-                      {
-                        key: "cell(roles)",
-                        fn: function(row) {
-                          return _vm._l(row.item.roles, function(role, index) {
-                            return _c(
-                              "span",
-                              {
-                                key: index,
-                                staticClass: "badge badge-success",
-                                staticStyle: { "font-size": "85%" }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                  " +
-                                    _vm._s(role.name) +
-                                    "\n                "
-                                )
-                              ]
-                            )
-                          })
-                        }
-                      },
                       {
                         key: "cell(actions)",
                         fn: function(row) {
@@ -1686,7 +1651,78 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  _vm._m(0)
+                  _c(
+                    "div",
+                    {
+                      staticClass: "dropdown-menu",
+                      attrs: { "aria-labelledby": "topnav-layout" }
+                    },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "dropdown-item side-nav-link",
+                          attrs: { tag: "a", to: "/settings/companies" }
+                        },
+                        [_vm._v("Empresas")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "dropdown-item side-nav-link",
+                          attrs: { tag: "a", to: "/" }
+                        },
+                        [_vm._v("Series Facturas")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "dropdown-item side-nav-link",
+                          attrs: { tag: "a", to: "/" }
+                        },
+                        [_vm._v("Condiciones Venta")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "dropdown-item side-nav-link",
+                          attrs: { tag: "a", to: "/" }
+                        },
+                        [_vm._v("Formas Pago")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "dropdown-item side-nav-link",
+                          attrs: { tag: "a", to: "/" }
+                        },
+                        [_vm._v("Mto. Bancos")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "dropdown-item side-nav-link",
+                          attrs: { tag: "a", to: "/" }
+                        },
+                        [_vm._v("Mto. IVA")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "dropdown-item side-nav-link",
+                          attrs: { tag: "a", to: "/" }
+                        },
+                        [_vm._v("Mto. Texto Factura")]
+                      )
+                    ],
+                    1
+                  )
                 ]),
                 _vm._v(" "),
                 _c(
@@ -1791,63 +1827,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "dropdown-menu",
-        attrs: { "aria-labelledby": "topnav-layout" }
-      },
-      [
-        _c(
-          "a",
-          { staticClass: "dropdown-item side-nav-link", attrs: { href: "/" } },
-          [_vm._v("Empresas")]
-        ),
-        _vm._v(" "),
-        _c(
-          "a",
-          { staticClass: "dropdown-item side-nav-link", attrs: { href: "/" } },
-          [_vm._v("Series Facturas")]
-        ),
-        _vm._v(" "),
-        _c(
-          "a",
-          { staticClass: "dropdown-item side-nav-link", attrs: { href: "/" } },
-          [_vm._v("Condiciones Venta")]
-        ),
-        _vm._v(" "),
-        _c(
-          "a",
-          { staticClass: "dropdown-item side-nav-link", attrs: { href: "/" } },
-          [_vm._v("Formas Pago")]
-        ),
-        _vm._v(" "),
-        _c(
-          "a",
-          { staticClass: "dropdown-item side-nav-link", attrs: { href: "/" } },
-          [_vm._v("Mto. Bancos")]
-        ),
-        _vm._v(" "),
-        _c(
-          "a",
-          { staticClass: "dropdown-item side-nav-link", attrs: { href: "/" } },
-          [_vm._v("Mto. IVA")]
-        ),
-        _vm._v(" "),
-        _c(
-          "a",
-          { staticClass: "dropdown-item side-nav-link", attrs: { href: "/" } },
-          [_vm._v("Mto. Texto Factura")]
-        )
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -1873,7 +1853,56 @@ var render = function() {
   return _c("header", { attrs: { id: "page-topbar" } }, [
     _c("div", { staticClass: "navbar-header" }, [
       _c("div", { staticClass: "d-flex" }, [
-        _vm._m(0),
+        _c(
+          "div",
+          { staticClass: "navbar-brand-box" },
+          [
+            _c(
+              "router-link",
+              { staticClass: "logo logo-dark", attrs: { to: "/" } },
+              [
+                _c("span", { staticClass: "logo-sm" }, [
+                  _c("img", {
+                    attrs: { src: "/images/logo-sm.png", alt: "", height: "22" }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "logo-lg" }, [
+                  _c("img", {
+                    attrs: {
+                      src: "/images/logo-dark.png",
+                      alt: "",
+                      height: "45"
+                    }
+                  })
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              { staticClass: "logo logo-light", attrs: { to: "/" } },
+              [
+                _c("span", { staticClass: "logo-sm" }, [
+                  _c("img", {
+                    attrs: { src: "/images/logo-sm.png", alt: "", height: "22" }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "logo-lg" }, [
+                  _c("img", {
+                    attrs: {
+                      src: "/images/logo-light.png",
+                      alt: "",
+                      height: "45"
+                    }
+                  })
+                ])
+              ]
+            )
+          ],
+          1
+        ),
         _vm._v(" "),
         _c(
           "button",
@@ -1950,42 +1979,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "navbar-brand-box" }, [
-      _c("a", { staticClass: "logo logo-dark", attrs: { href: "/" } }, [
-        _c("span", { staticClass: "logo-sm" }, [
-          _c("img", {
-            attrs: { src: "/images/logo-sm.png", alt: "", height: "22" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("span", { staticClass: "logo-lg" }, [
-          _c("img", {
-            attrs: { src: "/images/logo-dark.png", alt: "", height: "45" }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("a", { staticClass: "logo logo-light", attrs: { href: "/" } }, [
-        _c("span", { staticClass: "logo-sm" }, [
-          _c("img", {
-            attrs: { src: "/images/logo-sm.png", alt: "", height: "22" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("span", { staticClass: "logo-lg" }, [
-          _c("img", {
-            attrs: { src: "/images/logo-light.png", alt: "", height: "45" }
-          })
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -2063,7 +2057,7 @@ var render = function() {
   return _c("div", { staticClass: "row align-items-center" }, [
     _c("div", { staticClass: "col-sm-6" }, [
       _c("div", { staticClass: "page-title-box" }, [
-        _c("h4", { staticClass: "font-size-18" }, [_vm._v(_vm._s(_vm.title))]),
+        _c("h4", {}, [_vm._v(_vm._s(_vm.title))]),
         _vm._v(" "),
         _c(
           "div",

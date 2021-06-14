@@ -2,82 +2,70 @@ import ApiService from "@/api/api.service";
 import type from './type';
 
 const actions = {
-    initUsers(context) {
+    getCompanies(context) {
         ApiService.setHeader();
         return new Promise((resolve) =>{
-            ApiService.get("api/v1/admin/users")
+            ApiService.get("api/v1/admin/companies")
                 .then(({data}) => {
                     console.log(data);
-                    context.commit(type.SET_ALL_USERS, data)
+                    context.commit(type.SET_ALL_COMPANIES, data)
                 })
                 .catch(({ response }) => {
                     // context.commit(type.AUTH_LOGOUT);
                 });
         });
     },
-    getUserById(context, userId) {
+    getCompanyById(context, companyId) {
         ApiService.setHeader();
         return new Promise((resolve) =>{
-            ApiService.get("api/v1/admin/user/" + userId)
+            ApiService.get("api/v1/admin/company/" + companyId)
                 .then(({data}) => {
                     console.log(data);
-                    context.commit(type.SET_USER, data)
+                    context.commit(type.SET_COMPANY, data)
                 })
                 .catch(({ response }) => {
                     // context.commit(type.AUTH_LOGOUT);
                 });
         });
     },
-    createUser(context, userInfo) {
+    createCompany(context, companyInfo) {
         ApiService.setHeader();
         return new Promise((resolve, reject) => {
-            ApiService.post("api/v1/admin/user/create", userInfo)
+            ApiService.post("api/v1/admin/company/create", companyInfo)
                 .then((data) => {
                     resolve(data);
                     toastr.success('Creado Correctamente', {timeout: 1000,closeButton: true,closeMethod: 'fadeOut',closeDuration: 300});
                 })
                 .catch(({response, status}) => {
                     console.log(response);
-                    // if(status === 422) {
-                    //     context.commit(
-                    //         type.USER_SET_ERROR,
-                    //         {target: 'register', errors: response.data.errors}
-                    //     );
-                    // }
                     reject(response);
                 });
         });
     },
-    updateUser(context, userInfo) {
+    updateCompany(context, companyInfo) {
         ApiService.setHeader();
         return new Promise((resolve, reject) => {
-            ApiService.put("api/v1/admin/user/update", userInfo)
+            ApiService.put("api/v1/admin/company/update", companyInfo)
                 .then((data) => {
                     resolve(data);
                     toastr.success('Actualizado Correctamente', {timeout: 1000,closeButton: true,closeMethod: 'fadeOut',closeDuration: 300});
                 })
                 .catch(({response, status}) => {
                     console.log(response);
-                    // if(status === 422) {
-                    //     context.commit(
-                    //         type.USER_SET_ERROR,
-                    //         {target: 'register', errors: response.data.errors}
-                    //     );
-                    // }
                     reject(response);
                 });
         });
     },
-    deleteUser(context, userId) {
+    deleteCompany(context, companyId) {
         ApiService.setHeader();
         return new Promise((resolve) =>{
-            ApiService.delete("api/v1/admin/user/delete/" + userId)
+            ApiService.delete("api/v1/admin/company/delete/" + companyId)
                 .then(({data}) => {
-                    context.commit(type.SET_ALL_USERS, data)
+                    context.commit(type.SET_ALL_COMPANIES, data)
                     toastr.success('Eliminado Correctamente', {timeout: 1000,closeButton: true,closeMethod: 'fadeOut',closeDuration: 300});
                 })
                 .catch(({ response }) => {
-                    // context.commit(type.AUTH_LOGOUT);
+                    reject(response);
                 });
         });
     },

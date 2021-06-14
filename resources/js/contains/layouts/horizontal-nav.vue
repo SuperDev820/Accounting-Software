@@ -100,34 +100,34 @@ export default {
                 <i class="mdi mdi-settings-outline mr-2"></i> Configuración
               </a>
               <div class="dropdown-menu" aria-labelledby="topnav-layout">
-                <a
-                  href="/"
+                <router-link tag="a"
+                  to="/settings/companies"
                   class="dropdown-item side-nav-link"
-                >Empresas</a>
-                <a
-                  href="/"
+                >Empresas</router-link>
+                <router-link tag="a"
+                  to="/"
                   class="dropdown-item side-nav-link"
-                >Series Facturas</a>
-                <a
-                  href="/"
+                >Series Facturas</router-link>
+                <router-link tag="a"
+                  to="/"
                   class="dropdown-item side-nav-link"
-                >Condiciones Venta</a>
-                <a
-                  href="/"
+                >Condiciones Venta</router-link>
+                <router-link tag="a"
+                  to="/"
                   class="dropdown-item side-nav-link"
-                >Formas Pago</a>
-                <a
-                  href="/"
+                >Formas Pago</router-link>
+                <router-link tag="a"
+                  to="/"
                   class="dropdown-item side-nav-link"
-                >Mto. Bancos</a>
-                <a
-                  href="/"
+                >Mto. Bancos</router-link>
+                <router-link tag="a"
+                  to="/"
                   class="dropdown-item side-nav-link"
-                >Mto. IVA</a>
-                <a
-                  href="/"
+                >Mto. IVA</router-link>
+                <router-link tag="a"
+                  to="/"
                   class="dropdown-item side-nav-link"
-                >Mto. Texto Factura</a>
+                >Mto. Texto Factura</router-link>
               </div>
             </li>
 
