@@ -62,10 +62,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.symbol.description.js */ "./node_modules/core-js/modules/es.symbol.description.js");
 /* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var E_Mikel_Accounting_Software_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2 */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
-/* harmony import */ var _app_config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/app.config */ "./resources/js/app.config.json");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.mjs");
-/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.function.name.js */ "./node_modules/core-js/modules/es.function.name.js");
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var E_Mikel_Accounting_Software_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/objectSpread2 */ "./node_modules/@babel/runtime/helpers/esm/objectSpread2.js");
+/* harmony import */ var _app_config__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/app.config */ "./resources/js/app.config.json");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.mjs");
+/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
+
 
 
 
@@ -81,7 +84,7 @@ __webpack_require__.r(__webpack_exports__);
     title: "Login",
     meta: [{
       name: "description",
-      content: _app_config__WEBPACK_IMPORTED_MODULE_3__.description
+      content: _app_config__WEBPACK_IMPORTED_MODULE_4__.description
     }]
   },
   components: {},
@@ -89,7 +92,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       typeform: {
         password: "",
-        email: ""
+        name: ""
       },
       authError: null,
       tryingToSubmit: false,
@@ -100,17 +103,16 @@ __webpack_require__.r(__webpack_exports__);
   validations: {
     typeform: {
       password: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__.required,
-        minLength: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__.minLength)(6)
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_5__.required,
+        minLength: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_5__.minLength)(6)
       },
-      email: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__.required,
-        email: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__.email
+      name: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_5__.required
       }
     }
   },
-  computed: (0,E_Mikel_Accounting_Software_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__.default)({}, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapGetters)([])),
-  methods: (0,E_Mikel_Accounting_Software_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__.default)((0,E_Mikel_Accounting_Software_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_2__.default)({}, (0,vuex__WEBPACK_IMPORTED_MODULE_5__.mapActions)(['login'])), {}, {
+  computed: (0,E_Mikel_Accounting_Software_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_3__.default)({}, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapGetters)([])),
+  methods: (0,E_Mikel_Accounting_Software_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_3__.default)((0,E_Mikel_Accounting_Software_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_3__.default)({}, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapActions)(['login'])), {}, {
     // Try to log the user in with the username
     // and password they provided.
     typeForm: function typeForm(e) {
@@ -122,13 +124,13 @@ __webpack_require__.r(__webpack_exports__);
       this.isAuthError = false;
       this.$v.$touch();
 
-      if (this.$v.typeform.email.$error || this.$v.typeform.password.$error) {
+      if (this.$v.typeform.name.$error || this.$v.typeform.password.$error) {
         return;
       }
 
       this.tryingToSubmit = true;
       return this.login({
-        email: this.typeform.email,
+        email: this.typeform.name,
         password: this.typeform.password
       }).then(function (res) {
         _this.typesubmit = false;
@@ -212,6 +214,38 @@ module.exports.f = function getOwnPropertyNames(it) {
 var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js/internals/well-known-symbol.js");
 
 exports.f = wellKnownSymbol;
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/modules/es.function.name.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/core-js/modules/es.function.name.js ***!
+  \**********************************************************/
+/***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
+
+var DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ "./node_modules/core-js/internals/descriptors.js");
+var defineProperty = __webpack_require__(/*! ../internals/object-define-property */ "./node_modules/core-js/internals/object-define-property.js").f;
+
+var FunctionPrototype = Function.prototype;
+var FunctionPrototypeToString = FunctionPrototype.toString;
+var nameRE = /^\s*function ([^ (]*)/;
+var NAME = 'name';
+
+// Function instances `.name` property
+// https://tc39.es/ecma262/#sec-function-instances-name
+if (DESCRIPTORS && !(NAME in FunctionPrototype)) {
+  defineProperty(FunctionPrototype, NAME, {
+    configurable: true,
+    get: function () {
+      try {
+        return FunctionPrototypeToString.call(this).match(nameRE)[1];
+      } catch (error) {
+        return '';
+      }
+    }
+  });
+}
 
 
 /***/ }),
@@ -723,28 +757,28 @@ var render = function() {
                     },
                     [
                       _c("div", { staticClass: "form-group" }, [
-                        _c("label", [_vm._v("E-Mail")]),
+                        _c("label", [_vm._v("Nombre")]),
                         _vm._v(" "),
                         _c("input", {
                           directives: [
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.typeform.email,
-                              expression: "typeform.email"
+                              value: _vm.typeform.name,
+                              expression: "typeform.name"
                             }
                           ],
                           staticClass: "form-control",
                           class: {
                             "is-invalid":
-                              _vm.typesubmit && _vm.$v.typeform.email.$error
+                              _vm.typesubmit && _vm.$v.typeform.name.$error
                           },
                           attrs: {
-                            type: "email",
-                            name: "email",
-                            placeholder: "Enter E-Mail"
+                            type: "text",
+                            name: "name",
+                            placeholder: "Enter Nombre"
                           },
-                          domProps: { value: _vm.typeform.email },
+                          domProps: { value: _vm.typeform.name },
                           on: {
                             input: function($event) {
                               if ($event.target.composing) {
@@ -752,24 +786,18 @@ var render = function() {
                               }
                               _vm.$set(
                                 _vm.typeform,
-                                "email",
+                                "name",
                                 $event.target.value
                               )
                             }
                           }
                         }),
                         _vm._v(" "),
-                        _vm.typesubmit && _vm.$v.typeform.email.$error
+                        _vm.typesubmit && _vm.$v.typeform.name.$error
                           ? _c("div", { staticClass: "invalid-feedback" }, [
-                              !_vm.$v.typeform.email.required
+                              !_vm.$v.typeform.name.required
                                 ? _c("span", [
                                     _vm._v("Este Campo es obligatorio.")
-                                  ])
-                                : _vm._e(),
-                              _vm._v(" "),
-                              !_vm.$v.typeform.email.email
-                                ? _c("span", [
-                                    _vm._v("Debe ser un e-mail válido.")
                                   ])
                                 : _vm._e()
                             ])
@@ -847,7 +875,7 @@ var render = function() {
                                   "unchecked-value": "not_accepted"
                                 }
                               },
-                              [_vm._v("Remember me")]
+                              [_vm._v("Recuérdame")]
                             )
                           ],
                           1
@@ -873,27 +901,7 @@ var render = function() {
                                       staticClass: "fa fa-spinner fa-spin"
                                     })
                                   : _vm._e(),
-                                _vm._v(" Log In\n                    ")
-                              ]
-                            )
-                          ],
-                          1
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group mt-2 mb-0 row" }, [
-                        _c(
-                          "div",
-                          { staticClass: "col-12 mt-4" },
-                          [
-                            _c(
-                              "router-link",
-                              { attrs: { tag: "a", to: "/forgot-password" } },
-                              [
-                                _c("i", { staticClass: "mdi mdi-lock" }),
-                                _vm._v(
-                                  " Forgot your password?\n                    "
-                                )
+                                _vm._v(" Aceptar\n                    ")
                               ]
                             )
                           ],
@@ -912,14 +920,14 @@ var render = function() {
             _c(
               "p",
               [
-                _vm._v("\n            Don't have an account ?\n            "),
+                _vm._v("\n            ¿No tienes una cuenta?\n            "),
                 _c(
                   "router-link",
                   {
                     staticClass: "font-weight-medium text-primary",
                     attrs: { tag: "a", to: "/register" }
                   },
-                  [_vm._v("Signup now")]
+                  [_vm._v("Regístrate ahora")]
                 )
               ],
               1
@@ -947,12 +955,8 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "bg-primary" }, [
       _c("div", { staticClass: "text-primary text-center p-4" }, [
-        _c("h5", { staticClass: "text-white font-size-20" }, [
-          _vm._v("Welcome Back !")
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "text-white-50" }, [
-          _vm._v("Sign in to continue.")
+        _c("h5", { staticClass: "text-white font-size-20 mb-3" }, [
+          _vm._v("Inicia sesión para continuar.")
         ]),
         _vm._v(" "),
         _c("a", { staticClass: "logo logo-admin", attrs: { href: "/" } }, [

@@ -18,7 +18,6 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name',
         'email',
         'password',
     ];
@@ -30,7 +29,6 @@ class User extends Authenticatable implements JWTSubject
      */
     protected $hidden = [
         'password',
-        'remember_token',
     ];
 
     /**
@@ -38,9 +36,9 @@ class User extends Authenticatable implements JWTSubject
      *
      * @var array
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    // protected $casts = [
+    //     'email_verified_at' => 'datetime',
+    // ];
 
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
@@ -66,7 +64,7 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsToMany(Role::class,'role_users');
     }
 
-    public function permissions() {
-        return $this->belongsToMany(Permission::class,'permission_users');
-    }
+    // public function permissions() {
+    //     return $this->belongsToMany(Permission::class,'permission_users');
+    // }
 }

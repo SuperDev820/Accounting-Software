@@ -99,7 +99,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Listado de Usuarios</h4>
+            <h4 class="card-title">Listado de Empresas</h4>
             <p class="card-title-desc"></p>
             <div class="row mb-md-2">
               <div class="col-sm-12 col-md-6">
@@ -127,7 +127,7 @@
               <!-- End search -->
             </div>
             <!-- Table -->
-            <div class="table-responsive table-dark mb-0">
+            <div class="table-responsive mb-0">
               <b-table
                 :items="getUsers"
                 :fields="fields"
@@ -146,10 +146,10 @@
                   </span>
                 </template>
                 <template #cell(actions)="row">
-                  <router-link :to="{ name: 'UserEdit', params: { userId: row.item.id }}" class="btn btn-sm btn-secondary">
+                  <router-link :to="{ name: 'UserEdit', params: { userId: row.item.id }}" class="btn btn-sm btn-success">
                     <i class="far fa-edit"></i>
                   </router-link>
-                  <b-button size="sm" @click="setId(row.item.id)" v-b-modal.delete-modal>
+                  <b-button size="sm" variant="danger" @click="setId(row.item.id)" v-b-modal.delete-modal>
                     <i class="fas fa-trash"></i>
                   </b-button>
                 </template>

@@ -3,7 +3,6 @@ import appConfig from "@/app.config";
 import {mapActions, mapGetters} from 'vuex'
 import {
   required,
-  email,
   minLength,
 } from "vuelidate/lib/validators";
 /**
@@ -19,7 +18,7 @@ export default {
     return {
       typeform: {
         password: "",
-        email: "",
+        name: "",
       },
       authError: null,
       tryingToSubmit: false,
@@ -30,7 +29,7 @@ export default {
   validations: {
     typeform: {
       password: { required, minLength: minLength(6) },
-      email: { required, email },
+      name: { required },
     }
   },
   computed: {
@@ -49,13 +48,13 @@ export default {
       this.authError = null;
       this.isAuthError = false;
       this.$v.$touch()
-      if (this.$v.typeform.email.$error || this.$v.typeform.password.$error) {
+      if (this.$v.typeform.name.$error || this.$v.typeform.password.$error) {
         return ;
       }
       this.tryingToSubmit = true;
       return (
         this.login({
-            email: this.typeform.email,
+            email: this.typeform.name,
             password: this.typeform.password
           })
           .then((res) => {
@@ -84,8 +83,7 @@ export default {
           <div class="card overflow-hidden">
             <div class="bg-primary">
               <div class="text-primary text-center p-4">
-                <h5 class="text-white font-size-20">Welcome Back !</h5>
-                <p class="text-white-50">Sign in to continue.</p>
+                <h5 class="text-white font-size-20 mb-3">Inicia sesión para continuar.</h5>
                 <a href="/" class="logo logo-admin">
                   <img src="/images/logo-sm.png" height="24" alt="logo" />
                 </a>
@@ -102,18 +100,17 @@ export default {
 
                 <form action="#" @submit.prevent="typeForm" class="form-horizontal mt-4">
                   <div class="form-group">
-                    <label>E-Mail</label>
+                    <label>Nombre</label>
                     <input
-                      v-model="typeform.email"
-                      type="email"
-                      name="email"
+                      v-model="typeform.name"
+                      type="text"
+                      name="name"
                       class="form-control"
-                      placeholder="Enter E-Mail"
-                      :class="{ 'is-invalid': typesubmit && $v.typeform.email.$error }"
+                      placeholder="Enter Nombre"
+                      :class="{ 'is-invalid': typesubmit && $v.typeform.name.$error }"
                     />
-                    <div v-if="typesubmit && $v.typeform.email.$error" class="invalid-feedback">
-                      <span v-if="!$v.typeform.email.required">Este Campo es obligatorio.</span>
-                      <span v-if="!$v.typeform.email.email">Debe ser un e-mail válido.</span>
+                    <div v-if="typesubmit && $v.typeform.name.$error" class="invalid-feedback">
+                      <span v-if="!$v.typeform.name.required">Este Campo es obligatorio.</span>
                     </div>
                   </div>
 
@@ -142,22 +139,22 @@ export default {
                         name="checkbox-1"
                         value="accepted"
                         unchecked-value="not_accepted"
-                      >Remember me</b-form-checkbox>
+                      >Recuérdame</b-form-checkbox>
                     </div>
                     <div class="col-sm-6 text-right">
                       <b-button type="submit" variant="primary" class="w-md" :disabled="tryingToSubmit">
-                        <i class="fa fa-spinner fa-spin" v-if="tryingToSubmit"></i> Log In
+                        <i class="fa fa-spinner fa-spin" v-if="tryingToSubmit"></i> Aceptar
                       </b-button>
                     </div>
                   </div>
 
-                  <div class="form-group mt-2 mb-0 row">
+                  <!-- <div class="form-group mt-2 mb-0 row">
                     <div class="col-12 mt-4">
                       <router-link tag="a" to="/forgot-password">
                         <i class="mdi mdi-lock"></i> Forgot your password?
                       </router-link>
                     </div>
-                  </div>
+                  </div> -->
                 </form>
               </div>
             </div>
@@ -166,8 +163,8 @@ export default {
           <!-- end card -->
           <div class="mt-5 text-center">
             <p>
-              Don't have an account ?
-              <router-link tag="a" to="/register" class="font-weight-medium text-primary">Signup now</router-link>
+              ¿No tienes una cuenta?
+              <router-link tag="a" to="/register" class="font-weight-medium text-primary">Regístrate ahora</router-link>
             </p>
             <p class="mb-0">
               ©

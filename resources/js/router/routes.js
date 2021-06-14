@@ -5,7 +5,7 @@ export default [
         path: '/',
         meta: { authRequired: true },
         name: 'home',
-        component: () => import('../contains/settings/company/companies'),
+        component: () => import('../contains/home'),
     },
     {
         path: '/login',
@@ -41,23 +41,23 @@ export default [
             },
         },
     },
-    {
-        path: '/forgot-password',
-        name: 'forgot-password',
-        component: () => import('../contains/auth/forgot-password'),
-        meta: {
-            beforeResolve(routeTo, routeFrom, next) {
-                // If the user is already logged in
-                if (store.getters['isAuthenticated']) {
-                    // Redirect to the home page instead
-                    next({ name: 'home' })
-                } else {
-                    // Continue to the login page
-                    next()
-                }
-            },
-        },
-    },
+    // {
+    //     path: '/forgot-password',
+    //     name: 'forgot-password',
+    //     component: () => import('../contains/auth/forgot-password'),
+    //     meta: {
+    //         beforeResolve(routeTo, routeFrom, next) {
+    //             // If the user is already logged in
+    //             if (store.getters['isAuthenticated']) {
+    //                 // Redirect to the home page instead
+    //                 next({ name: 'home' })
+    //             } else {
+    //                 // Continue to the login page
+    //                 next()
+    //             }
+    //         },
+    //     },
+    // },
     {
         path: '/logout',
         name: 'logout',

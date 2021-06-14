@@ -2,7 +2,6 @@
 import appConfig from "@/app.config";
 import {
   required,
-  email,
   minLength,
 } from "vuelidate/lib/validators";
 /**
@@ -16,9 +15,8 @@ export default {
   data() {
     return {
       typeform: {
-        username: "",
+        name: "",
         password: "",
-        email: "",
       },
       regError: null,
       tryingToSubmit: false,
@@ -29,8 +27,7 @@ export default {
   validations: {
     typeform: {
       password: { required, minLength: minLength(6) },
-      email: { required, email },
-      username: { required },
+      name: { required },
     }
   },
   methods: {
@@ -42,15 +39,14 @@ export default {
       this.regError = null;
       this.isRegisterError = false;
       this.$v.$touch()
-      if (this.$v.typeform.username.$error || this.$v.typeform.email.$error || this.$v.typeform.password.$error) {
+      if (this.$v.typeform.name.$error || this.$v.typeform.password.$error) {
         return ;
       }
       this.tryingToSubmit = true;
       return (
         this.$store
           .dispatch("register", {
-              name: this.typeform.username,
-              email: this.typeform.email,
+              email: this.typeform.name,
               password: this.typeform.password,
               password_confirmation: this.typeform.password
           })
@@ -80,8 +76,7 @@ export default {
           <div class="card overflow-hidden">
             <div class="bg-primary">
               <div class="text-primary text-center p-4">
-                <h5 class="text-white font-size-20">Free Register</h5>
-                <p class="text-white-50">Register to start.</p>
+                <h5 class="text-white font-size-20 mb-3">Registro gratuito</h5>
                 <a href="/" class="logo logo-admin">
                   <img src="/images/logo-sm.png" height="24" alt="logo" />
                 </a>
@@ -98,30 +93,16 @@ export default {
                 >{{regError}}</b-alert>
 
                 <b-form action="#" @submit.prevent="typeForm" class="form-horizontal mt-4">
-                  <b-form-group id="username-group" label="Nombre" label-for="username">
+                  <b-form-group id="name-group" label="Nombre" label-for="name">
                     <b-form-input
-                      id="username"
-                      v-model="typeform.username"
+                      id="name"
+                      v-model="typeform.name"
                       type="text"
                       placeholder="Enter Nombre"
-                      :class="{ 'is-invalid': typesubmit && $v.typeform.username.$error }"
+                      :class="{ 'is-invalid': typesubmit && $v.typeform.name.$error }"
                     ></b-form-input>
-                    <div v-if="typesubmit && $v.typeform.username.$error" class="invalid-feedback">
-                      <span v-if="!$v.typeform.username.required">Este Campo es obligatorio.</span>
-                    </div>
-                  </b-form-group>
-
-                  <b-form-group id="email-group" label="E-Mail" label-for="email">
-                    <b-form-input 
-                      id="email" 
-                      v-model="typeform.email" 
-                      type="email" 
-                      placeholder="Enter E-Mail"
-                      :class="{ 'is-invalid': typesubmit && $v.typeform.email.$error }"
-                    ></b-form-input>
-                    <div v-if="typesubmit && $v.typeform.email.$error" class="invalid-feedback">
-                      <span v-if="!$v.typeform.email.required">Este Campo es obligatorio.</span>
-                      <span v-if="!$v.typeform.email.email">Debe ser un e-mail válido.</span>
+                    <div v-if="typesubmit && $v.typeform.name.$error" class="invalid-feedback">
+                      <span v-if="!$v.typeform.name.required">Este Campo es obligatorio.</span>
                     </div>
                   </b-form-group>
 
@@ -144,11 +125,11 @@ export default {
                   <div class="form-group mb-0 text-center">
                     <div class="col-12 text-right">
                       <b-button type="submit" variant="primary" class="w-md" :disabled="tryingToSubmit">
-                        <i class="fa fa-spinner fa-spin" v-if="tryingToSubmit"></i> Register
+                        <i class="fa fa-spinner fa-spin" v-if="tryingToSubmit"></i> Registrarse
                       </b-button>
                     </div>
                   </div>
-                  <div class="form-group mt-2 mb-0 row">
+                  <!-- <div class="form-group mt-2 mb-0 row">
                     <div class="col-12 mt-4">
                       <p class="mb-0">
                         By registering you agree to the Software
@@ -158,7 +139,7 @@ export default {
                         >Terms of Use</a>
                       </p>
                     </div>
-                  </div>
+                  </div> -->
                 </b-form>
               </div>
             </div>
@@ -167,8 +148,8 @@ export default {
           <!-- end card -->
           <div class="mt-5 text-center">
             <p>
-              Already have an account ?
-              <router-link tag="a" to="/login" class="font-weight-medium text-primary">Login</router-link>
+              Ya tienes una cuenta ?
+              <router-link tag="a" to="/login" class="font-weight-medium text-primary">Iniciar sesión</router-link>
             </p>
             <p>
               ©{{new Date().getFullYear()}} 

@@ -1297,7 +1297,7 @@ var render = function() {
           _vm._v(
             "\n        © " +
               _vm._s(new Date().getFullYear()) +
-              " Veltrix\n        "
+              " Celmet\n        "
           ),
           _vm._m(0)
         ])
@@ -1313,7 +1313,7 @@ var staticRenderFns = [
     return _c("span", { staticClass: "d-none d-sm-inline-block" }, [
       _vm._v("\n          - Crafted with\n          "),
       _c("i", { staticClass: "mdi mdi-heart text-danger" }),
-      _vm._v(" by Themesbrand.\n        ")
+      _vm._v(" by Organization.\n        ")
     ])
   }
 ]
@@ -1822,7 +1822,7 @@ var render = function() {
           _c("div", { staticClass: "card" }, [
             _c("div", { staticClass: "card-body" }, [
               _c("h4", { staticClass: "card-title" }, [
-                _vm._v("Listado de Usuarios")
+                _vm._v("Listado de Empresas")
               ]),
               _vm._v(" "),
               _c("p", { staticClass: "card-title-desc" }),
@@ -1897,7 +1897,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "div",
-                { staticClass: "table-responsive table-dark mb-0" },
+                { staticClass: "table-responsive mb-0" },
                 [
                   _c("b-table", {
                     attrs: {
@@ -1956,7 +1956,7 @@ var render = function() {
                             _c(
                               "router-link",
                               {
-                                staticClass: "btn btn-sm btn-secondary",
+                                staticClass: "btn btn-sm btn-success",
                                 attrs: {
                                   to: {
                                     name: "UserEdit",
@@ -1977,7 +1977,7 @@ var render = function() {
                                     modifiers: { "delete-modal": true }
                                   }
                                 ],
-                                attrs: { size: "sm" },
+                                attrs: { size: "sm", variant: "danger" },
                                 on: {
                                   click: function($event) {
                                     return _vm.setId(row.item.id)

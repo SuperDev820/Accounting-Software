@@ -12,8 +12,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.symbol.description.js */ "./node_modules/core-js/modules/es.symbol.description.js");
 /* harmony import */ var core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_symbol_description_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _app_config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/app.config */ "./resources/js/app.config.json");
-/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.function.name.js */ "./node_modules/core-js/modules/es.function.name.js");
+/* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _app_config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/app.config */ "./resources/js/app.config.json");
+/* harmony import */ var vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuelidate/lib/validators */ "./node_modules/vuelidate/lib/validators/index.js");
+
 
 
 
@@ -27,15 +30,14 @@ __webpack_require__.r(__webpack_exports__);
     title: "Register",
     meta: [{
       name: "description",
-      content: _app_config__WEBPACK_IMPORTED_MODULE_2__.description
+      content: _app_config__WEBPACK_IMPORTED_MODULE_3__.description
     }]
   },
   data: function data() {
     return {
       typeform: {
-        username: "",
-        password: "",
-        email: ""
+        name: "",
+        password: ""
       },
       regError: null,
       tryingToSubmit: false,
@@ -46,15 +48,11 @@ __webpack_require__.r(__webpack_exports__);
   validations: {
     typeform: {
       password: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required,
-        minLength: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.minLength)(6)
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__.required,
+        minLength: (0,vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__.minLength)(6)
       },
-      email: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required,
-        email: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.email
-      },
-      username: {
-        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_3__.required
+      name: {
+        required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_4__.required
       }
     }
   },
@@ -70,14 +68,13 @@ __webpack_require__.r(__webpack_exports__);
       this.isRegisterError = false;
       this.$v.$touch();
 
-      if (this.$v.typeform.username.$error || this.$v.typeform.email.$error || this.$v.typeform.password.$error) {
+      if (this.$v.typeform.name.$error || this.$v.typeform.password.$error) {
         return;
       }
 
       this.tryingToSubmit = true;
       return this.$store.dispatch("register", {
-        name: this.typeform.username,
-        email: this.typeform.email,
+        email: this.typeform.name,
         password: this.typeform.password,
         password_confirmation: this.typeform.password
       }).then(function (res, status) {
@@ -162,6 +159,38 @@ module.exports.f = function getOwnPropertyNames(it) {
 var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "./node_modules/core-js/internals/well-known-symbol.js");
 
 exports.f = wellKnownSymbol;
+
+
+/***/ }),
+
+/***/ "./node_modules/core-js/modules/es.function.name.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/core-js/modules/es.function.name.js ***!
+  \**********************************************************/
+/***/ (function(__unused_webpack_module, __unused_webpack_exports, __webpack_require__) {
+
+var DESCRIPTORS = __webpack_require__(/*! ../internals/descriptors */ "./node_modules/core-js/internals/descriptors.js");
+var defineProperty = __webpack_require__(/*! ../internals/object-define-property */ "./node_modules/core-js/internals/object-define-property.js").f;
+
+var FunctionPrototype = Function.prototype;
+var FunctionPrototypeToString = FunctionPrototype.toString;
+var nameRE = /^\s*function ([^ (]*)/;
+var NAME = 'name';
+
+// Function instances `.name` property
+// https://tc39.es/ecma262/#sec-function-instances-name
+if (DESCRIPTORS && !(NAME in FunctionPrototype)) {
+  defineProperty(FunctionPrototype, NAME, {
+    configurable: true,
+    get: function () {
+      try {
+        return FunctionPrototypeToString.call(this).match(nameRE)[1];
+      } catch (error) {
+        return '';
+      }
+    }
+  });
+}
 
 
 /***/ }),
@@ -676,85 +705,36 @@ var render = function() {
                         "b-form-group",
                         {
                           attrs: {
-                            id: "username-group",
+                            id: "name-group",
                             label: "Nombre",
-                            "label-for": "username"
+                            "label-for": "name"
                           }
                         },
                         [
                           _c("b-form-input", {
                             class: {
                               "is-invalid":
-                                _vm.typesubmit &&
-                                _vm.$v.typeform.username.$error
+                                _vm.typesubmit && _vm.$v.typeform.name.$error
                             },
                             attrs: {
-                              id: "username",
+                              id: "name",
                               type: "text",
                               placeholder: "Enter Nombre"
                             },
                             model: {
-                              value: _vm.typeform.username,
+                              value: _vm.typeform.name,
                               callback: function($$v) {
-                                _vm.$set(_vm.typeform, "username", $$v)
+                                _vm.$set(_vm.typeform, "name", $$v)
                               },
-                              expression: "typeform.username"
+                              expression: "typeform.name"
                             }
                           }),
                           _vm._v(" "),
-                          _vm.typesubmit && _vm.$v.typeform.username.$error
+                          _vm.typesubmit && _vm.$v.typeform.name.$error
                             ? _c("div", { staticClass: "invalid-feedback" }, [
-                                !_vm.$v.typeform.username.required
+                                !_vm.$v.typeform.name.required
                                   ? _c("span", [
                                       _vm._v("Este Campo es obligatorio.")
-                                    ])
-                                  : _vm._e()
-                              ])
-                            : _vm._e()
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-form-group",
-                        {
-                          attrs: {
-                            id: "email-group",
-                            label: "E-Mail",
-                            "label-for": "email"
-                          }
-                        },
-                        [
-                          _c("b-form-input", {
-                            class: {
-                              "is-invalid":
-                                _vm.typesubmit && _vm.$v.typeform.email.$error
-                            },
-                            attrs: {
-                              id: "email",
-                              type: "email",
-                              placeholder: "Enter E-Mail"
-                            },
-                            model: {
-                              value: _vm.typeform.email,
-                              callback: function($$v) {
-                                _vm.$set(_vm.typeform, "email", $$v)
-                              },
-                              expression: "typeform.email"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _vm.typesubmit && _vm.$v.typeform.email.$error
-                            ? _c("div", { staticClass: "invalid-feedback" }, [
-                                !_vm.$v.typeform.email.required
-                                  ? _c("span", [
-                                      _vm._v("Este Campo es obligatorio.")
-                                    ])
-                                  : _vm._e(),
-                                _vm._v(" "),
-                                !_vm.$v.typeform.email.email
-                                  ? _c("span", [
-                                      _vm._v("Debe ser un e-mail válido.")
                                     ])
                                   : _vm._e()
                               ])
@@ -838,32 +818,14 @@ var render = function() {
                                         staticClass: "fa fa-spinner fa-spin"
                                       })
                                     : _vm._e(),
-                                  _vm._v(" Register\n                    ")
+                                  _vm._v(" Registrarse\n                    ")
                                 ]
                               )
                             ],
                             1
                           )
                         ]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group mt-2 mb-0 row" }, [
-                        _c("div", { staticClass: "col-12 mt-4" }, [
-                          _c("p", { staticClass: "mb-0" }, [
-                            _vm._v(
-                              "\n                      By registering you agree to the Software\n                      "
-                            ),
-                            _c(
-                              "a",
-                              {
-                                staticClass: "text-primary",
-                                attrs: { href: "#" }
-                              },
-                              [_vm._v("Terms of Use")]
-                            )
-                          ])
-                        ])
-                      ])
+                      )
                     ],
                     1
                   )
@@ -877,14 +839,14 @@ var render = function() {
             _c(
               "p",
               [
-                _vm._v("\n            Already have an account ?\n            "),
+                _vm._v("\n            Ya tienes una cuenta ?\n            "),
                 _c(
                   "router-link",
                   {
                     staticClass: "font-weight-medium text-primary",
                     attrs: { tag: "a", to: "/login" }
                   },
-                  [_vm._v("Login")]
+                  [_vm._v("Iniciar sesión")]
                 )
               ],
               1
@@ -912,12 +874,8 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "bg-primary" }, [
       _c("div", { staticClass: "text-primary text-center p-4" }, [
-        _c("h5", { staticClass: "text-white font-size-20" }, [
-          _vm._v("Free Register")
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "text-white-50" }, [
-          _vm._v("Register to start.")
+        _c("h5", { staticClass: "text-white font-size-20 mb-3" }, [
+          _vm._v("Registro gratuito")
         ]),
         _vm._v(" "),
         _c("a", { staticClass: "logo logo-admin", attrs: { href: "/" } }, [
