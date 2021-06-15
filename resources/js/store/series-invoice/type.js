@@ -1,6 +1,6 @@
 const type = {
-    SET_ALL_COMPANIES: 'SET_ALL_COMPANIES',
-    SET_COMPANY: 'SET_COMPANY',
+    SET_ALL_SERIES: 'SET_ALL_SERIES',
+    SET_SERIE: 'SET_SERIE',
 }
 
 export default type;

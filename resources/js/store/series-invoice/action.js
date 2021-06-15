@@ -2,36 +2,36 @@ import ApiService from "@/api/api.service";
 import type from './type';
 
 const actions = {
-    getCompanies(context) {
+    getSeries(context) {
         ApiService.setHeader();
         return new Promise((resolve) =>{
-            ApiService.get("api/v1/admin/companies")
+            ApiService.get("api/v1/admin/series")
                 .then(({data}) => {
                     console.log(data);
-                    context.commit(type.SET_ALL_COMPANIES, data)
+                    context.commit(type.SET_ALL_SERIES, data)
                 })
                 .catch(({ response }) => {
-                    // context.commit(type.AUTH_LOGOUT);
+                    reject(response);
                 });
         });
     },
-    getCompanyById(context, companyId) {
+    getSerieById(context, serieId) {
         ApiService.setHeader();
         return new Promise((resolve) =>{
-            ApiService.get("api/v1/admin/company/" + companyId)
+            ApiService.get("api/v1/admin/serie/" + serieId)
                 .then(({data}) => {
                     console.log(data);
-                    context.commit(type.SET_COMPANY, data)
+                    context.commit(type.SET_SERIE, data)
                 })
                 .catch(({ response }) => {
-                    // context.commit(type.AUTH_LOGOUT);
+                    reject(response);
                 });
         });
     },
-    createCompany(context, companyInfo) {
+    createSerie(context, serieInfo) {
         ApiService.setHeader();
         return new Promise((resolve, reject) => {
-            ApiService.post("api/v1/admin/company/create", companyInfo)
+            ApiService.post("api/v1/admin/serie/create", serieInfo)
                 .then((data) => {
                     resolve(data);
                     toastr.success('Creado Correctamente', {timeout: 1000,closeButton: true,closeMethod: 'fadeOut',closeDuration: 300});
@@ -42,10 +42,10 @@ const actions = {
                 });
         });
     },
-    updateCompany(context, companyInfo) {
+    updateSerie(context, serieInfo) {
         ApiService.setHeader();
         return new Promise((resolve, reject) => {
-            ApiService.put("api/v1/admin/company/update", companyInfo)
+            ApiService.put("api/v1/admin/serie/update", serieInfo)
                 .then((data) => {
                     resolve(data);
                     toastr.success('Actualizado Correctamente', {timeout: 1000,closeButton: true,closeMethod: 'fadeOut',closeDuration: 300});
@@ -56,12 +56,12 @@ const actions = {
                 });
         });
     },
-    deleteCompany(context, companyId) {
+    deleteSerie(context, serieId) {
         ApiService.setHeader();
         return new Promise((resolve) =>{
-            ApiService.delete("api/v1/admin/company/delete/" + companyId)
+            ApiService.delete("api/v1/admin/serie/delete/" + serieId)
                 .then(({data}) => {
-                    context.commit(type.SET_ALL_COMPANIES, data)
+                    context.commit(type.SET_ALL_SERIES, data)
                     toastr.success('Eliminado Correctamente', {timeout: 1000,closeButton: true,closeMethod: 'fadeOut',closeDuration: 300});
                 })
                 .catch(({ response }) => {

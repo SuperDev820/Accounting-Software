@@ -2,11 +2,11 @@ import type from './type'
 import JwtService from '@/common/jwt.service'
 
 const mutations = {
-  [type.SET_ALL_COMPANIES] (state, data) {
-    state.companies = data.companies;
+  [type.SET_ALL_SERIES] (state, data) {
+    state.series = data.series;
   },
-  [type.SET_COMPANY] (state, data) {
-    state.company = data.company;
+  [type.SET_SERIE] (state, data) {
+    state.serie = data.serie;
   },
 };
 export default mutations;

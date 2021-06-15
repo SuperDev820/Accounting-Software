@@ -1444,7 +1444,7 @@ var render = function() {
                         "router-link",
                         {
                           staticClass: "dropdown-item side-nav-link",
-                          attrs: { tag: "a", to: "/settings/companies" }
+                          attrs: { tag: "a", to: { name: "Companies" } }
                         },
                         [_vm._v("Empresas")]
                       ),
@@ -1453,7 +1453,7 @@ var render = function() {
                         "router-link",
                         {
                           staticClass: "dropdown-item side-nav-link",
-                          attrs: { tag: "a", to: "/" }
+                          attrs: { tag: "a", to: { name: "SeriesInvoices" } }
                         },
                         [_vm._v("Series Facturas")]
                       ),
@@ -1462,7 +1462,7 @@ var render = function() {
                         "router-link",
                         {
                           staticClass: "dropdown-item side-nav-link",
-                          attrs: { tag: "a", to: "/" }
+                          attrs: { tag: "a", to: { name: "Companies" } }
                         },
                         [_vm._v("Condiciones Venta")]
                       ),
@@ -1471,7 +1471,7 @@ var render = function() {
                         "router-link",
                         {
                           staticClass: "dropdown-item side-nav-link",
-                          attrs: { tag: "a", to: "/" }
+                          attrs: { tag: "a", to: { name: "Companies" } }
                         },
                         [_vm._v("Formas Pago")]
                       ),
@@ -1480,7 +1480,7 @@ var render = function() {
                         "router-link",
                         {
                           staticClass: "dropdown-item side-nav-link",
-                          attrs: { tag: "a", to: "/" }
+                          attrs: { tag: "a", to: { name: "Companies" } }
                         },
                         [_vm._v("Mto. Bancos")]
                       ),
@@ -1489,7 +1489,7 @@ var render = function() {
                         "router-link",
                         {
                           staticClass: "dropdown-item side-nav-link",
-                          attrs: { tag: "a", to: "/" }
+                          attrs: { tag: "a", to: { name: "Companies" } }
                         },
                         [_vm._v("Mto. IVA")]
                       ),
@@ -1498,7 +1498,7 @@ var render = function() {
                         "router-link",
                         {
                           staticClass: "dropdown-item side-nav-link",
-                          attrs: { tag: "a", to: "/" }
+                          attrs: { tag: "a", to: { name: "Companies" } }
                         },
                         [_vm._v("Mto. Texto Factura")]
                       )
@@ -1515,7 +1515,7 @@ var render = function() {
                       "router-link",
                       {
                         staticClass: "nav-link side-nav-link",
-                        attrs: { tag: "a", to: "/" }
+                        attrs: { tag: "a", to: { name: "Companies" } }
                       },
                       [
                         _c("i", { staticClass: "ti-home mr-2" }),
@@ -1534,7 +1534,7 @@ var render = function() {
                       "router-link",
                       {
                         staticClass: "nav-link side-nav-link",
-                        attrs: { tag: "a", to: "/" }
+                        attrs: { tag: "a", to: { name: "Companies" } }
                       },
                       [
                         _c("i", { staticClass: "ti-home mr-2" }),
@@ -1553,7 +1553,7 @@ var render = function() {
                       "router-link",
                       {
                         staticClass: "nav-link side-nav-link",
-                        attrs: { tag: "a", to: "/" }
+                        attrs: { tag: "a", to: { name: "Companies" } }
                       },
                       [
                         _c("i", { staticClass: "ti-home mr-2" }),
@@ -1572,7 +1572,7 @@ var render = function() {
                       "router-link",
                       {
                         staticClass: "nav-link side-nav-link",
-                        attrs: { tag: "a", to: "/" }
+                        attrs: { tag: "a", to: { name: "Companies" } }
                       },
                       [
                         _c("i", { staticClass: "ti-home mr-2" }),
@@ -1591,7 +1591,7 @@ var render = function() {
                       "router-link",
                       {
                         staticClass: "nav-link side-nav-link",
-                        attrs: { tag: "a", to: "/" }
+                        attrs: { tag: "a", to: { name: "Companies" } }
                       },
                       [
                         _c("i", { staticClass: "ti-home mr-2" }),

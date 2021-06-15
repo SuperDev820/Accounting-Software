@@ -101,62 +101,62 @@ export default {
               </a>
               <div class="dropdown-menu" aria-labelledby="topnav-layout">
                 <router-link tag="a"
-                  to="/settings/companies"
+                  :to="{name: 'Companies'}"
                   class="dropdown-item side-nav-link"
                 >Empresas</router-link>
                 <router-link tag="a"
-                  to="/"
+                  :to="{name: 'SeriesInvoices'}"
                   class="dropdown-item side-nav-link"
                 >Series Facturas</router-link>
                 <router-link tag="a"
-                  to="/"
+                  :to="{name: 'Companies'}"
                   class="dropdown-item side-nav-link"
                 >Condiciones Venta</router-link>
                 <router-link tag="a"
-                  to="/"
+                  :to="{name: 'Companies'}"
                   class="dropdown-item side-nav-link"
                 >Formas Pago</router-link>
                 <router-link tag="a"
-                  to="/"
+                  :to="{name: 'Companies'}"
                   class="dropdown-item side-nav-link"
                 >Mto. Bancos</router-link>
                 <router-link tag="a"
-                  to="/"
+                  :to="{name: 'Companies'}"
                   class="dropdown-item side-nav-link"
                 >Mto. IVA</router-link>
                 <router-link tag="a"
-                  to="/"
+                  :to="{name: 'Companies'}"
                   class="dropdown-item side-nav-link"
                 >Mto. Texto Factura</router-link>
               </div>
             </li>
 
             <li class="nav-item">
-              <router-link tag="a" class="nav-link side-nav-link" to="/">
+              <router-link tag="a" class="nav-link side-nav-link" :to="{name: 'Companies'}">
                 <i class="ti-home mr-2"></i>Contactos
               </router-link>
             </li>
 
             <li class="nav-item">
-              <router-link tag="a" class="nav-link side-nav-link" to="/">
+              <router-link tag="a" class="nav-link side-nav-link" :to="{name: 'Companies'}">
                 <i class="ti-home mr-2"></i>Pedidos
               </router-link>
             </li>
 
             <li class="nav-item">
-              <router-link tag="a" class="nav-link side-nav-link" to="/">
+              <router-link tag="a" class="nav-link side-nav-link" :to="{name: 'Companies'}">
                 <i class="ti-home mr-2"></i>Comisiones
               </router-link>
             </li>
 
             <li class="nav-item">
-              <router-link tag="a" class="nav-link side-nav-link" to="/">
+              <router-link tag="a" class="nav-link side-nav-link" :to="{name: 'Companies'}">
                 <i class="ti-home mr-2"></i>Expedientes
               </router-link>
             </li>
 
             <li class="nav-item">
-              <router-link tag="a" class="nav-link side-nav-link" to="/">
+              <router-link tag="a" class="nav-link side-nav-link" :to="{name: 'Companies'}">
                 <i class="ti-home mr-2"></i>Facturas
               </router-link>
             </li>

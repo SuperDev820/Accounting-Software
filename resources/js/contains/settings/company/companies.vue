@@ -89,7 +89,7 @@
         <router-link to="/settings/company/create"
           class="btn btn-info btn-block d-inline-block"
         >
-          <i class="fas fa-plus mr-1"></i> AÑADIR EMPRESA
+          <i class="fas fa-plus mr-1"></i> Agregar Empresa
         </router-link>
       </div>
     </PageHeader>

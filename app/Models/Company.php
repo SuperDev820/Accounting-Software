@@ -19,4 +19,9 @@ class Company extends Model
         'Direccion',
         'Remite',
     ];
+
+    public function series()
+    {
+        return $this->hasMany(SeriesInvoice::class, 'empresa_id');
+    }
 }

@@ -11,7 +11,7 @@ const actions = {
                     context.commit(type.SET_ALL_COMPANIES, data)
                 })
                 .catch(({ response }) => {
-                    // context.commit(type.AUTH_LOGOUT);
+                    reject(response);
                 });
         });
     },
@@ -24,7 +24,7 @@ const actions = {
                     context.commit(type.SET_COMPANY, data)
                 })
                 .catch(({ response }) => {
-                    // context.commit(type.AUTH_LOGOUT);
+                    reject(response);
                 });
         });
     },

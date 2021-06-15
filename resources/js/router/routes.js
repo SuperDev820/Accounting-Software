@@ -93,6 +93,30 @@ export default [
             authRequired: true,
         },
     },
+    {
+        path: '/settings/series-invoices',
+        name: 'SeriesInvoices',
+        component: () => import('../contains/settings/series-invoice/series-invoices'),
+        meta: {
+            authRequired: true,
+        },
+    },
+    {
+        path: '/settings/series-invoice/create',
+        name: 'SeriesInvoiceCreate',
+        component: () => import('../contains/settings/series-invoice/series-invoice-create'),
+        meta: {
+            authRequired: true,
+        },
+    },
+    {
+        path: '/settings/series-invoice/edit/:serieId',
+        name: 'SeriesInvoiceEdit',
+        component: () => import('../contains/settings/series-invoice/series-invoice-edit'),
+        meta: {
+            authRequired: true,
+        },
+    },
     { 
         path: '*', 
         component: () => import('../contains/404/NotFoundPage.vue'), 

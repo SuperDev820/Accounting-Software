@@ -46,6 +46,17 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'api'], function(){
         Route::get('company/{companyId}', 'App\Http\Controllers\Api\v1\CompanyController@getById');
         /* delete company by id */
         Route::delete('company/delete/{companyId}', 'App\Http\Controllers\Api\v1\CompanyController@delete');
+
+        /* Get all series details*/
+        Route::get('series', 'App\Http\Controllers\Api\v1\SeriesInvoiceController@getAll');
+        /* Add a serie */
+        Route::post('serie/create', 'App\Http\Controllers\Api\v1\SeriesInvoiceController@create');
+        /* Update a serie */
+        Route::put('serie/update', 'App\Http\Controllers\Api\v1\SeriesInvoiceController@update');
+        /* Get serie detail by id */
+        Route::get('serie/{serieId}', 'App\Http\Controllers\Api\v1\SeriesInvoiceController@getById');
+        /* delete serie by id */
+        Route::delete('serie/delete/{serieId}', 'App\Http\Controllers\Api\v1\SeriesInvoiceController@delete');
     });
 
 });
