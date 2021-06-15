@@ -2,36 +2,36 @@ import ApiService from "@/api/api.service";
 import type from './type';
 
 const actions = {
-    getCompanies(context) {
+    getBanks(context) {
         ApiService.setHeader();
         return new Promise((resolve) =>{
-            ApiService.get("api/v1/admin/companies")
+            ApiService.get("api/v1/admin/banks")
                 .then(({data}) => {
                     console.log(data);
-                    context.commit(type.SET_ALL_COMPANIES, data)
+                    context.commit(type.SET_ALL_BANKS, data)
                 })
                 .catch(({ response }) => {
-                    // context.commit(type.AUTH_LOGOUT);
+                    reject(response);
                 });
         });
     },
-    getCompanyById(context, companyId) {
+    getBankById(context, bankId) {
         ApiService.setHeader();
         return new Promise((resolve) =>{
-            ApiService.get("api/v1/admin/company/" + companyId)
+            ApiService.get("api/v1/admin/bank/" + bankId)
                 .then(({data}) => {
                     console.log(data);
-                    context.commit(type.SET_COMPANY, data)
+                    context.commit(type.SET_BANK, data)
                 })
                 .catch(({ response }) => {
-                    // context.commit(type.AUTH_LOGOUT);
+                    reject(response);
                 });
         });
     },
-    createCompany(context, companyInfo) {
+    createBank(context, bankInfo) {
         ApiService.setHeader();
         return new Promise((resolve, reject) => {
-            ApiService.post("api/v1/admin/company/create", companyInfo)
+            ApiService.post("api/v1/admin/bank/create", bankInfo)
                 .then((data) => {
                     resolve(data);
                     toastr.success('Creado Correctamente', {timeout: 1000,closeButton: true,closeMethod: 'fadeOut',closeDuration: 300});
@@ -42,10 +42,10 @@ const actions = {
                 });
         });
     },
-    updateCompany(context, companyInfo) {
+    updateBank(context, bankInfo) {
         ApiService.setHeader();
         return new Promise((resolve, reject) => {
-            ApiService.put("api/v1/admin/company/update", companyInfo)
+            ApiService.put("api/v1/admin/bank/update", bankInfo)
                 .then((data) => {
                     resolve(data);
                     toastr.success('Actualizado Correctamente', {timeout: 1000,closeButton: true,closeMethod: 'fadeOut',closeDuration: 300});
@@ -56,12 +56,12 @@ const actions = {
                 });
         });
     },
-    deleteCompany(context, companyId) {
+    deleteBank(context, bankId) {
         ApiService.setHeader();
         return new Promise((resolve) =>{
-            ApiService.delete("api/v1/admin/company/delete/" + companyId)
+            ApiService.delete("api/v1/admin/bank/delete/" + bankId)
                 .then(({data}) => {
-                    context.commit(type.SET_ALL_COMPANIES, data)
+                    context.commit(type.SET_ALL_BANKS, data)
                     toastr.success('Eliminado Correctamente', {timeout: 1000,closeButton: true,closeMethod: 'fadeOut',closeDuration: 300});
                 })
                 .catch(({ response }) => {

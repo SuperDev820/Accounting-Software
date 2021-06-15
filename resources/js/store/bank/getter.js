@@ -1,9 +1,9 @@
 const getters = {
-    companies(state) {
-        return state.companies;
+    banks(state) {
+        return state.banks;
     },
-    company(state) {
-        return state.company;
+    bank(state) {
+        return state.bank;
     },
   };
   

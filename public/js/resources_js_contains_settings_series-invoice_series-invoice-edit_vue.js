@@ -1515,7 +1515,7 @@ var render = function() {
                         "router-link",
                         {
                           staticClass: "dropdown-item side-nav-link",
-                          attrs: { tag: "a", to: { name: "Companies" } }
+                          attrs: { tag: "a", to: { name: "SaleConditions" } }
                         },
                         [_vm._v("Condiciones Venta")]
                       ),
@@ -1524,7 +1524,7 @@ var render = function() {
                         "router-link",
                         {
                           staticClass: "dropdown-item side-nav-link",
-                          attrs: { tag: "a", to: { name: "Companies" } }
+                          attrs: { tag: "a", to: { name: "PaymentMethods" } }
                         },
                         [_vm._v("Formas Pago")]
                       ),
@@ -1533,7 +1533,7 @@ var render = function() {
                         "router-link",
                         {
                           staticClass: "dropdown-item side-nav-link",
-                          attrs: { tag: "a", to: { name: "Companies" } }
+                          attrs: { tag: "a", to: { name: "Banks" } }
                         },
                         [_vm._v("Mto. Bancos")]
                       ),
@@ -1542,7 +1542,7 @@ var render = function() {
                         "router-link",
                         {
                           staticClass: "dropdown-item side-nav-link",
-                          attrs: { tag: "a", to: { name: "Companies" } }
+                          attrs: { tag: "a", to: { name: "IVA" } }
                         },
                         [_vm._v("Mto. IVA")]
                       ),
@@ -1551,7 +1551,7 @@ var render = function() {
                         "router-link",
                         {
                           staticClass: "dropdown-item side-nav-link",
-                          attrs: { tag: "a", to: { name: "Companies" } }
+                          attrs: { tag: "a", to: { name: "InvoiceText" } }
                         },
                         [_vm._v("Mto. Texto Factura")]
                       )

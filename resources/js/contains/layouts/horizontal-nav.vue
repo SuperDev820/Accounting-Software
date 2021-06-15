@@ -109,23 +109,23 @@ export default {
                   class="dropdown-item side-nav-link"
                 >Series Facturas</router-link>
                 <router-link tag="a"
-                  :to="{name: 'Companies'}"
+                  :to="{name: 'SaleConditions'}"
                   class="dropdown-item side-nav-link"
                 >Condiciones Venta</router-link>
                 <router-link tag="a"
-                  :to="{name: 'Companies'}"
+                  :to="{name: 'PaymentMethods'}"
                   class="dropdown-item side-nav-link"
                 >Formas Pago</router-link>
                 <router-link tag="a"
-                  :to="{name: 'Companies'}"
+                  :to="{name: 'Banks'}"
                   class="dropdown-item side-nav-link"
                 >Mto. Bancos</router-link>
                 <router-link tag="a"
-                  :to="{name: 'Companies'}"
+                  :to="{name: 'IVA'}"
                   class="dropdown-item side-nav-link"
                 >Mto. IVA</router-link>
                 <router-link tag="a"
-                  :to="{name: 'Companies'}"
+                  :to="{name: 'InvoiceText'}"
                   class="dropdown-item side-nav-link"
                 >Mto. Texto Factura</router-link>
               </div>

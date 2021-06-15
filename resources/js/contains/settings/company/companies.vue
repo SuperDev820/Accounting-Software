@@ -86,7 +86,7 @@
   <Layout>
     <PageHeader :title="title" :items="items">
       <div class="float-right">
-        <router-link to="/settings/company/create"
+        <router-link :to="{name: 'CompanyCreate'}"
           class="btn btn-info btn-block d-inline-block"
         >
           <i class="fas fa-plus mr-1"></i> Agregar Empresa

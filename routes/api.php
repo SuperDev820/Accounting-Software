@@ -57,6 +57,39 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'api'], function(){
         Route::get('serie/{serieId}', 'App\Http\Controllers\Api\v1\SeriesInvoiceController@getById');
         /* delete serie by id */
         Route::delete('serie/delete/{serieId}', 'App\Http\Controllers\Api\v1\SeriesInvoiceController@delete');
+
+        /* Get all sale-conditions details*/
+        Route::get('sale-conditions', 'App\Http\Controllers\Api\v1\SaleConditionController@getAll');
+        /* Add a sale-condition */
+        Route::post('sale-condition/create', 'App\Http\Controllers\Api\v1\SaleConditionController@create');
+        /* Update a sale-condition */
+        Route::put('sale-condition/update', 'App\Http\Controllers\Api\v1\SaleConditionController@update');
+        /* Get sale-condition detail by id */
+        Route::get('sale-condition/{conditionId}', 'App\Http\Controllers\Api\v1\SaleConditionController@getById');
+        /* delete sale-condition by id */
+        Route::delete('sale-condition/delete/{conditionId}', 'App\Http\Controllers\Api\v1\SaleConditionController@delete');
+
+        /* Get all payment-methods details*/
+        Route::get('payment-methods', 'App\Http\Controllers\Api\v1\PaymentMethodController@getAll');
+        /* Add a payment-method */
+        Route::post('payment-method/create', 'App\Http\Controllers\Api\v1\PaymentMethodController@create');
+        /* Update a payment-method */
+        Route::put('payment-method/update', 'App\Http\Controllers\Api\v1\PaymentMethodController@update');
+        /* Get payment-method detail by id */
+        Route::get('payment-method/{paymentMethodId}', 'App\Http\Controllers\Api\v1\PaymentMethodController@getById');
+        /* delete payment-method by id */
+        Route::delete('payment-method/delete/{paymentMethodId}', 'App\Http\Controllers\Api\v1\PaymentMethodController@delete');
+
+        /* Get all banks details*/
+        Route::get('banks', 'App\Http\Controllers\Api\v1\BankController@getAll');
+        /* Add a bank */
+        Route::post('bank/create', 'App\Http\Controllers\Api\v1\BankController@create');
+        /* Update a bank */
+        Route::put('bank/update', 'App\Http\Controllers\Api\v1\BankController@update');
+        /* Get bank detail by id */
+        Route::get('bank/{bankId}', 'App\Http\Controllers\Api\v1\BankController@getById');
+        /* delete bank by id */
+        Route::delete('bank/delete/{bankId}', 'App\Http\Controllers\Api\v1\BankController@delete');
     });
 
 });

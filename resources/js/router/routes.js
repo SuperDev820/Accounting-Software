@@ -117,6 +117,78 @@ export default [
             authRequired: true,
         },
     },
+    {
+        path: '/settings/sale-conditions',
+        name: 'SaleConditions',
+        component: () => import('../contains/settings/sale-condition/sale-conditions'),
+        meta: {
+            authRequired: true,
+        },
+    },
+    {
+        path: '/settings/sale-condition/create',
+        name: 'SaleConditionCreate',
+        component: () => import('../contains/settings/sale-condition/sale-condition-create'),
+        meta: {
+            authRequired: true,
+        },
+    },
+    {
+        path: '/settings/sale-condition/edit/:conditionId',
+        name: 'SaleConditionEdit',
+        component: () => import('../contains/settings/sale-condition/sale-condition-edit'),
+        meta: {
+            authRequired: true,
+        },
+    },
+    {
+        path: '/settings/payment-methods',
+        name: 'PaymentMethods',
+        component: () => import('../contains/settings/payment-method/payment-methods'),
+        meta: {
+            authRequired: true,
+        },
+    },
+    {
+        path: '/settings/payment-method/create',
+        name: 'PaymentMethodCreate',
+        component: () => import('../contains/settings/payment-method/payment-method-create'),
+        meta: {
+            authRequired: true,
+        },
+    },
+    {
+        path: '/settings/payment-method/edit/:paymentMethodId',
+        name: 'PaymentMethodEdit',
+        component: () => import('../contains/settings/payment-method/payment-method-edit'),
+        meta: {
+            authRequired: true,
+        },
+    },
+    {
+        path: '/settings/banks',
+        name: 'Banks',
+        component: () => import('../contains/settings/bank/banks'),
+        meta: {
+            authRequired: true,
+        },
+    },
+    {
+        path: '/settings/bank/create',
+        name: 'BankCreate',
+        component: () => import('../contains/settings/bank/bank-create'),
+        meta: {
+            authRequired: true,
+        },
+    },
+    {
+        path: '/settings/bank/edit/:bankId',
+        name: 'BankEdit',
+        component: () => import('../contains/settings/bank/bank-edit'),
+        meta: {
+            authRequired: true,
+        },
+    },
     { 
         path: '*', 
         component: () => import('../contains/404/NotFoundPage.vue'), 
