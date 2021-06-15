@@ -1498,7 +1498,7 @@ var render = function() {
                         "router-link",
                         {
                           staticClass: "dropdown-item side-nav-link",
-                          attrs: { tag: "a", to: { name: "InvoiceText" } }
+                          attrs: { tag: "a", to: { name: "InvoiceTexts" } }
                         },
                         [_vm._v("Mto. Texto Factura")]
                       )
@@ -1515,7 +1515,7 @@ var render = function() {
                       "router-link",
                       {
                         staticClass: "nav-link side-nav-link",
-                        attrs: { tag: "a", to: { name: "Companies" } }
+                        attrs: { tag: "a", to: { name: "Contacts" } }
                       },
                       [
                         _c("i", { staticClass: "ti-home mr-2" }),

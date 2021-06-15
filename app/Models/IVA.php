@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class IVA extends Model
 {
     use HasFactory;
+
+    public $table = "m_iva";
+
+    protected $fillable = [
+        'Descripcion',
+    ];
 }

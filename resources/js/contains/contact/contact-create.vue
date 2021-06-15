@@ -1,7 +1,7 @@
 <script>
-import Layout from "../../layouts/horizontal";
+import Layout from "../layouts/horizontal";
 import appConfig from "@/app.config";
-import PageHeader from "../../layouts/page-header";
+import PageHeader from "../layouts/page-header";
 
 import { mapActions, mapGetters } from 'vuex';
 
@@ -11,24 +11,24 @@ import {
 
 export default {
   page: {
-    title: "Detalle de Empresa",
+    title: "Crear Contactos",
     meta: [{ name: "description", content: appConfig.description }]
   },
   components: { Layout, PageHeader },
   data() {
     return {
-      title: "Detalle de Empresa",
+      title: "Crear Contactos",
       items: [
         {
           text: "Home",
           href: "/"
         },
         {
-          text: "Empresas",
-          href: "/settings/companies"
+          text: "Contactos",
+          href: "/contacts"
         },
         {
-          text: "Detalle de Empresa",
+          text: "Crear Contactos",
           active: true
         }
       ],
@@ -48,31 +48,12 @@ export default {
   },
   validations: {
     typeform: {
-      code: { required },
+      name: { required },
     }
-  },
-  mounted() {
-    this.getCompanyById(this.$route.params.companyId);
-  },
-  computed: {
-    ...mapGetters([
-      'company',
-    ]),
-  },
-  watch: {
-    company: function () {
-      this.typeform.code = this.company.IdEmpresa
-      this.typeform.name = this.company.Descripcion
-      this.typeform.image = this.company.Ruta
-      this.typeform.title = this.company.Titulo
-      this.typeform.direction = this.company.Direccion
-      this.typeform.return = this.company.Remite
-    },
   },
   methods: {
     ...mapActions([
-        'updateCompany',
-        'getCompanyById',
+        'createContact'
       ]),
     /**
      * Validation type submit
@@ -84,13 +65,12 @@ export default {
       this.Error = null;
       // stop here if form is invalid
       this.$v.$touch()
-      if (this.$v.typeform.code.$error) {
+      if (this.$v.typeform.name.$error) {
         return ;
       }
       this.tryingToSubmit = true;
       return (
-        this.updateCompany({
-            id: this.$route.params.companyId,
+        this.createContact({
             IdEmpresa: this.typeform.code,
             name: this.typeform.name,
             image: this.typeform.image,
@@ -99,7 +79,7 @@ export default {
             return: this.typeform.return,
           })
           .then((res) => {
-            this.$router.push({name: "Companies"});
+            this.$router.push({name: "Contacts"});
             this.typesubmit = false;
             this.tryingToSubmit = false;
           })
@@ -131,15 +111,15 @@ export default {
             >{{ Error }}</b-alert>
             <form action="#" @submit.prevent="typeForm">
               <div class="form-group">
-                <label>Código: </label>
+                <label>Nombre: </label>
                 <input
-                  v-model="typeform.code"
+                  v-model="typeform.name"
                   type="text"
                   class="form-control"
-                  :class="{ 'is-invalid': typesubmit && $v.typeform.code.$error }"
+                  :class="{ 'is-invalid': typesubmit && $v.typeform.name.$error }"
                 />
-                <div v-if="typesubmit && $v.typeform.code.$error" class="invalid-feedback">
-                  <span v-if="!$v.typeform.code.required">Este Campo es obligatorio.</span>
+                <div v-if="typesubmit && $v.typeform.name.$error" class="invalid-feedback">
+                  <span v-if="!$v.typeform.name.required">Este Campo es obligatorio.</span>
                 </div>
               </div>
 
@@ -192,7 +172,8 @@ export default {
                   <button type="submit" class="btn btn-primary" :disabled="tryingToSubmit">
                     <i class="fa fa-spinner fa-spin" v-if="tryingToSubmit"></i> Guardar
                   </button>
-                  <router-link to="/settings/companies" class="btn btn-secondary m-l-5 ml-1">Cancelar</router-link>
+                  <router-link :to="{name: 'Contacts'}" class="btn btn-secondary m-l-5 ml-1">Cancelar</router-link>
+                  <button type="reset" class="btn btn-warning m-l-5 ml-1">Vaciar</button>
                 </div>
               </div>
             </form>

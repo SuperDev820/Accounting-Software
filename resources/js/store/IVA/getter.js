@@ -1,9 +1,9 @@
 const getters = {
-    companies(state) {
-        return state.companies;
+    allIVA(state) {
+        return state.all_IVA;
     },
-    company(state) {
-        return state.company;
+    IVA(state) {
+        return state.IVA;
     },
   };
   

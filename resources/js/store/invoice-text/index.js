@@ -4,8 +4,8 @@ import getters from './getter'
 import JwtService from "@/common/jwt.service"
 
 const defaultState = {
-  companies: [],
-  company: {}
+  invoice_texts: [],
+  invoice_text: {}
 };
 
 export default {

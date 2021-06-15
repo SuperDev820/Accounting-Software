@@ -7,7 +7,7 @@
 
 	export default {
 		page: {
-        title: "Listado de Empresas",
+        title: "Listado de IVA",
         meta: [{ name: "description", content: appConfig.description }]
     },
     components: {
@@ -16,14 +16,14 @@
     },
     data() {
       return {
-        title: "Listado de Empresas",
+        title: "Listado de IVA",
         items: [
           {
             text: "Home",
             href: "/"
           },
           {
-            text: "Empresas",
+            text: "IVA",
             active: true
           }
         ],
@@ -33,10 +33,10 @@
         pageOptions: [10, 25, 50, 100],
         filter: null,
         filterOn: [],
-        sortBy: "IdEmpresa",
+        sortBy: "id",
         sortDesc: false,
         fields: [
-          { label: "Código", key: "IdEmpresa", sortable: true },
+          { label: "Código", key: "id", sortable: true },
           { label: "Nombre", key: "Descripcion", sortable: true },
           { label: "Acciones", key: "actions", sortable: false }
         ],
@@ -45,24 +45,24 @@
     },
     computed: {
       ...mapGetters([
-        'companies'
+        'allIVA'
       ]),
       /**
        * Total no. of records
        */
       rows() {
-        return this.companies.length;
+        return this.allIVA.length;
       }
     },
     mounted() {
       // Set the initial number of items
-      this.totalRows = this.companies.length;
-      this.getCompanies();
+      this.totalRows = this.allIVA.length;
+      this.getAllIVA();
     },
     methods: {
       ...mapActions([
-        'getCompanies',
-        'deleteCompany',
+        'getAllIVA',
+        'deleteIVA',
       ]),
       /**
        * Search the table data with search input
@@ -76,7 +76,7 @@
         this.deletingId = id;
       },
       realDelete() {
-        this.deleteCompany(this.deletingId);
+        this.deleteIVA(this.deletingId);
         this.$bvModal.hide('delete-modal');
       }
     }
@@ -86,10 +86,10 @@
   <Layout>
     <PageHeader :title="title" :items="items">
       <div class="float-right">
-        <router-link to="/settings/company/create"
+        <router-link :to="{name: 'IVACreate'}"
           class="btn btn-info btn-block d-inline-block"
         >
-          <i class="fas fa-plus mr-1"></i> AÑADIR EMPRESA
+          <i class="fas fa-plus mr-1"></i> Agregar IVA
         </router-link>
       </div>
     </PageHeader>
@@ -126,7 +126,7 @@
             <!-- Table -->
             <div class="table-responsive mb-0">
               <b-table
-                :items="companies"
+                :items="allIVA"
                 :fields="fields"
                 responsive="sm"
                 :per-page="perPage"
@@ -138,7 +138,7 @@
                 @filtered="onFiltered"
               >
                 <template #cell(actions)="row">
-                  <router-link :to="{ name: 'CompanyEdit', params: { companyId: row.item.id }}" class="btn btn-sm btn-success">
+                  <router-link :to="{ name: 'IVAEdit', params: { IVAId: row.item.id }}" class="btn btn-sm btn-success">
                     <i class="far fa-edit"></i>
                   </router-link>
                   <b-button size="sm" variant="danger" @click="setId(row.item.id)" v-b-modal.delete-modal>

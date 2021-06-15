@@ -1,13 +1,13 @@
 <script>
-	import Layout from "../../layouts/horizontal";
+	import Layout from "../layouts/horizontal";
 	import appConfig from "@/app.config";
-  import PageHeader from "../../layouts/page-header";
+  import PageHeader from "../layouts/page-header";
 
   import { mapActions, mapGetters } from 'vuex';
 
 	export default {
 		page: {
-        title: "Listado de Empresas",
+        title: "Listado de Contactos",
         meta: [{ name: "description", content: appConfig.description }]
     },
     components: {
@@ -16,14 +16,14 @@
     },
     data() {
       return {
-        title: "Listado de Empresas",
+        title: "Listado de Contactos",
         items: [
           {
             text: "Home",
             href: "/"
           },
           {
-            text: "Empresas",
+            text: "Contactos",
             active: true
           }
         ],
@@ -33,11 +33,14 @@
         pageOptions: [10, 25, 50, 100],
         filter: null,
         filterOn: [],
-        sortBy: "IdEmpresa",
+        sortBy: "Organizacion",
         sortDesc: false,
         fields: [
-          { label: "Código", key: "IdEmpresa", sortable: true },
-          { label: "Nombre", key: "Descripcion", sortable: true },
+          { label: "Empresa", key: "Organizacion", sortable: true },
+          { label: "Empresa2", key: "Nombre1", sortable: false },
+          { label: "Nombre", key: "Nombre", sortable: true },
+          { label: "Teléfono", key: "TelTrabajo", sortable: false },
+          { label: "Móvil", key: "TelMovil", sortable: false },
           { label: "Acciones", key: "actions", sortable: false }
         ],
         deletingId: 0,
@@ -45,24 +48,24 @@
     },
     computed: {
       ...mapGetters([
-        'companies'
+        'contacts'
       ]),
       /**
        * Total no. of records
        */
       rows() {
-        return this.companies.length;
+        return this.contacts.length;
       }
     },
     mounted() {
       // Set the initial number of items
-      this.totalRows = this.companies.length;
-      this.getCompanies();
+      this.totalRows = this.contacts.length;
+      this.getContacts();
     },
     methods: {
       ...mapActions([
-        'getCompanies',
-        'deleteCompany',
+        'getContacts',
+        'deleteContact',
       ]),
       /**
        * Search the table data with search input
@@ -76,7 +79,7 @@
         this.deletingId = id;
       },
       realDelete() {
-        this.deleteCompany(this.deletingId);
+        this.deleteContact(this.deletingId);
         this.$bvModal.hide('delete-modal');
       }
     }
@@ -86,10 +89,10 @@
   <Layout>
     <PageHeader :title="title" :items="items">
       <div class="float-right">
-        <router-link to="/settings/company/create"
+        <router-link :to="{name: 'ContactCreate'}"
           class="btn btn-info btn-block d-inline-block"
         >
-          <i class="fas fa-plus mr-1"></i> AÑADIR EMPRESA
+          <i class="fas fa-plus mr-1"></i> Agregar Contacto
         </router-link>
       </div>
     </PageHeader>
@@ -126,7 +129,7 @@
             <!-- Table -->
             <div class="table-responsive mb-0">
               <b-table
-                :items="companies"
+                :items="contacts"
                 :fields="fields"
                 responsive="sm"
                 :per-page="perPage"
@@ -138,7 +141,7 @@
                 @filtered="onFiltered"
               >
                 <template #cell(actions)="row">
-                  <router-link :to="{ name: 'CompanyEdit', params: { companyId: row.item.id }}" class="btn btn-sm btn-success">
+                  <router-link :to="{ name: 'ContactEdit', params: { contactId: row.item.id }}" class="btn btn-sm btn-success">
                     <i class="far fa-edit"></i>
                   </router-link>
                   <b-button size="sm" variant="danger" @click="setId(row.item.id)" v-b-modal.delete-modal>

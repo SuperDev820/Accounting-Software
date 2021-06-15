@@ -7,6 +7,9 @@ import seriesModule from './series-invoice';
 import saleConditionModule from './sale-condition';
 import paymentMethodModule from './payment-method';
 import bankModule from './bank';
+import IVAModule from './IVA';
+import invoiceTextModule from './invoice-text';
+import contactModule from './contact';
 
 Vue.use(Vuex);
 
@@ -19,5 +22,8 @@ export default new Vuex.Store({
     saleCondition: saleConditionModule,
     paymentMethod: paymentMethodModule,
     bank: bankModule,
+    IVA: IVAModule,
+    invoiceText: invoiceTextModule,
+    contact: contactModule,
   },
 });

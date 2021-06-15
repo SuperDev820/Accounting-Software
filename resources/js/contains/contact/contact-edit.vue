@@ -1,7 +1,7 @@
 <script>
-import Layout from "../../layouts/horizontal";
+import Layout from "../layouts/horizontal";
 import appConfig from "@/app.config";
-import PageHeader from "../../layouts/page-header";
+import PageHeader from "../layouts/page-header";
 
 import { mapActions, mapGetters } from 'vuex';
 
@@ -11,24 +11,24 @@ import {
 
 export default {
   page: {
-    title: "Detalle de Empresa",
+    title: "Detalle de Contacto",
     meta: [{ name: "description", content: appConfig.description }]
   },
   components: { Layout, PageHeader },
   data() {
     return {
-      title: "Detalle de Empresa",
+      title: "Detalle de Contacto",
       items: [
         {
           text: "Home",
           href: "/"
         },
         {
-          text: "Empresas",
-          href: "/settings/companies"
+          text: "Contactos",
+          href: "/contacts"
         },
         {
-          text: "Detalle de Empresa",
+          text: "Detalle de Contacto",
           active: true
         }
       ],
@@ -48,11 +48,11 @@ export default {
   },
   validations: {
     typeform: {
-      code: { required },
+      name: { required },
     }
   },
   mounted() {
-    this.getCompanyById(this.$route.params.companyId);
+    this.getContactById(this.$route.params.contactId);
   },
   computed: {
     ...mapGetters([
@@ -60,19 +60,19 @@ export default {
     ]),
   },
   watch: {
-    company: function () {
-      this.typeform.code = this.company.IdEmpresa
-      this.typeform.name = this.company.Descripcion
-      this.typeform.image = this.company.Ruta
-      this.typeform.title = this.company.Titulo
-      this.typeform.direction = this.company.Direccion
-      this.typeform.return = this.company.Remite
+    contact: function () {
+      this.typeform.code = this.contact.IdEmpresa
+      this.typeform.name = this.contact.Descripcion
+      this.typeform.image = this.contact.Ruta
+      this.typeform.title = this.contact.Titulo
+      this.typeform.direction = this.contact.Direccion
+      this.typeform.return = this.contact.Remite
     },
   },
   methods: {
     ...mapActions([
-        'updateCompany',
-        'getCompanyById',
+        'updateContact',
+        'getContactById',
       ]),
     /**
      * Validation type submit
@@ -84,13 +84,13 @@ export default {
       this.Error = null;
       // stop here if form is invalid
       this.$v.$touch()
-      if (this.$v.typeform.code.$error) {
+      if (this.$v.typeform.name.$error) {
         return ;
       }
       this.tryingToSubmit = true;
       return (
-        this.updateCompany({
-            id: this.$route.params.companyId,
+        this.updateContact({
+            id: this.$route.params.contactId,
             IdEmpresa: this.typeform.code,
             name: this.typeform.name,
             image: this.typeform.image,
@@ -99,7 +99,7 @@ export default {
             return: this.typeform.return,
           })
           .then((res) => {
-            this.$router.push({name: "Companies"});
+            this.$router.push({name: "Contacts"});
             this.typesubmit = false;
             this.tryingToSubmit = false;
           })
@@ -192,7 +192,7 @@ export default {
                   <button type="submit" class="btn btn-primary" :disabled="tryingToSubmit">
                     <i class="fa fa-spinner fa-spin" v-if="tryingToSubmit"></i> Guardar
                   </button>
-                  <router-link to="/settings/companies" class="btn btn-secondary m-l-5 ml-1">Cancelar</router-link>
+                  <router-link :to="{name: 'Contacts'}" class="btn btn-secondary m-l-5 ml-1">Cancelar</router-link>
                 </div>
               </div>
             </form>

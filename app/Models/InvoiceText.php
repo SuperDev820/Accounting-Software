@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class InvoiceText extends Model
 {
     use HasFactory;
+
+    public $table = "m_texto_facturas";
+
+    protected $fillable = [
+        'Descripcion',
+    ];
 }

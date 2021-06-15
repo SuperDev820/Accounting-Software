@@ -25,7 +25,7 @@ export default {
         },
         {
           text: "Empresas",
-          href: "/settings/companies"
+          href: "/settings/invoice-texts"
         },
         {
           text: "Detalle de Empresa",
@@ -35,12 +35,7 @@ export default {
       isError: false,
       Error: null,
       typeform: {
-        code: "",
         name: "",
-        image: "",
-        direction: "",
-        title: "",
-        return: "",
       },
       typesubmit: false,
       tryingToSubmit: false,
@@ -48,31 +43,26 @@ export default {
   },
   validations: {
     typeform: {
-      code: { required },
+      name: { required },
     }
   },
   mounted() {
-    this.getCompanyById(this.$route.params.companyId);
+    this.getInvoiceTextById(this.$route.params.invoiceTextId);
   },
   computed: {
     ...mapGetters([
-      'company',
+      'invoiceText',
     ]),
   },
   watch: {
-    company: function () {
-      this.typeform.code = this.company.IdEmpresa
-      this.typeform.name = this.company.Descripcion
-      this.typeform.image = this.company.Ruta
-      this.typeform.title = this.company.Titulo
-      this.typeform.direction = this.company.Direccion
-      this.typeform.return = this.company.Remite
+    invoiceText: function () {
+      this.typeform.name = this.invoiceText.Descripcion
     },
   },
   methods: {
     ...mapActions([
-        'updateCompany',
-        'getCompanyById',
+        'updateInvoiceText',
+        'getInvoiceTextById',
       ]),
     /**
      * Validation type submit
@@ -84,22 +74,17 @@ export default {
       this.Error = null;
       // stop here if form is invalid
       this.$v.$touch()
-      if (this.$v.typeform.code.$error) {
+      if (this.$v.typeform.name.$error) {
         return ;
       }
       this.tryingToSubmit = true;
       return (
-        this.updateCompany({
-            id: this.$route.params.companyId,
-            IdEmpresa: this.typeform.code,
+        this.updateInvoiceText({
+            id: this.$route.params.invoiceTextId,
             name: this.typeform.name,
-            image: this.typeform.image,
-            title: this.typeform.title,
-            direction: this.typeform.direction,
-            return: this.typeform.return,
           })
           .then((res) => {
-            this.$router.push({name: "Companies"});
+            this.$router.push({name: "InvoiceTexts"});
             this.typesubmit = false;
             this.tryingToSubmit = false;
           })
@@ -131,60 +116,16 @@ export default {
             >{{ Error }}</b-alert>
             <form action="#" @submit.prevent="typeForm">
               <div class="form-group">
-                <label>Código: </label>
-                <input
-                  v-model="typeform.code"
-                  type="text"
-                  class="form-control"
-                  :class="{ 'is-invalid': typesubmit && $v.typeform.code.$error }"
-                />
-                <div v-if="typesubmit && $v.typeform.code.$error" class="invalid-feedback">
-                  <span v-if="!$v.typeform.code.required">Este Campo es obligatorio.</span>
-                </div>
-              </div>
-
-              <div class="form-group">
                 <label>Nombre: </label>
                 <input
                   v-model="typeform.name"
                   type="text"
                   class="form-control"
+                  :class="{ 'is-invalid': typesubmit && $v.typeform.name.$error }"
                 />
-              </div>
-
-              <div class="form-group">
-                <label>Nombre Imagen: </label>
-                <input
-                  v-model="typeform.image"
-                  type="text"
-                  class="form-control"
-                />
-              </div>
-
-              <div class="form-group">
-                <label>Título: </label>
-                <input
-                  v-model="typeform.title"
-                  type="text"
-                  class="form-control"
-                />
-              </div>
-
-              <div class="form-group">
-                <label>Dirección: </label>
-                <textarea
-                  v-model="typeform.direction"
-                  class="form-control"
-                ></textarea>
-              </div>
-
-              <div class="form-group">
-                <label>Remite: </label>
-                <input
-                  v-model="typeform.return"
-                  type="text"
-                  class="form-control"
-                />
+                <div v-if="typesubmit && $v.typeform.name.$error" class="invalid-feedback">
+                  <span v-if="!$v.typeform.name.required">Este Campo es obligatorio.</span>
+                </div>
               </div>
 
               <div class="form-group mt-5 mb-0">
@@ -192,7 +133,7 @@ export default {
                   <button type="submit" class="btn btn-primary" :disabled="tryingToSubmit">
                     <i class="fa fa-spinner fa-spin" v-if="tryingToSubmit"></i> Guardar
                   </button>
-                  <router-link to="/settings/companies" class="btn btn-secondary m-l-5 ml-1">Cancelar</router-link>
+                  <router-link :to="{name: 'InvoiceTexts'}" class="btn btn-secondary m-l-5 ml-1">Cancelar</router-link>
                 </div>
               </div>
             </form>

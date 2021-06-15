@@ -125,14 +125,14 @@ export default {
                   class="dropdown-item side-nav-link"
                 >Mto. IVA</router-link>
                 <router-link tag="a"
-                  :to="{name: 'InvoiceText'}"
+                  :to="{name: 'InvoiceTexts'}"
                   class="dropdown-item side-nav-link"
                 >Mto. Texto Factura</router-link>
               </div>
             </li>
 
             <li class="nav-item">
-              <router-link tag="a" class="nav-link side-nav-link" :to="{name: 'Companies'}">
+              <router-link tag="a" class="nav-link side-nav-link" :to="{name: 'Contacts'}">
                 <i class="ti-home mr-2"></i>Contactos
               </router-link>
             </li>

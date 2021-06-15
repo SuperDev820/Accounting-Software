@@ -189,6 +189,80 @@ export default [
             authRequired: true,
         },
     },
+    {
+        path: '/settings/IVA',
+        name: 'IVA',
+        component: () => import('../contains/settings/IVA/IVA'),
+        meta: {
+            authRequired: true,
+        },
+    },
+    {
+        path: '/settings/IVA/create',
+        name: 'IVACreate',
+        component: () => import('../contains/settings/IVA/IVA-create'),
+        meta: {
+            authRequired: true,
+        },
+    },
+    {
+        path: '/settings/IVA/edit/:IVAId',
+        name: 'IVAEdit',
+        component: () => import('../contains/settings/IVA/IVA-edit'),
+        meta: {
+            authRequired: true,
+        },
+    },
+    {
+        path: '/settings/invoice-texts',
+        name: 'InvoiceTexts',
+        component: () => import('../contains/settings/invoice-text/invoice-texts'),
+        meta: {
+            authRequired: true,
+        },
+    },
+    {
+        path: '/settings/invoice-text/create',
+        name: 'InvoiceTextCreate',
+        component: () => import('../contains/settings/invoice-text/invoice-text-create'),
+        meta: {
+            authRequired: true,
+        },
+    },
+    {
+        path: '/settings/invoice-text/edit/:invoiceTextId',
+        name: 'InvoiceTextEdit',
+        component: () => import('../contains/settings/invoice-text/invoice-text-edit'),
+        meta: {
+            authRequired: true,
+        },
+    },
+
+    {
+        path: '/contacts',
+        name: 'Contacts',
+        component: () => import('../contains/contact/contacts'),
+        meta: {
+            authRequired: true,
+        },
+    },
+    {
+        path: '/contact/create',
+        name: 'ContactCreate',
+        component: () => import('../contains/contact/contact-create'),
+        meta: {
+            authRequired: true,
+        },
+    },
+    {
+        path: '/contact/edit/:contactId',
+        name: 'ContactEdit',
+        component: () => import('../contains/contact/contact-edit'),
+        meta: {
+            authRequired: true,
+        },
+    },
+
     { 
         path: '*', 
         component: () => import('../contains/404/NotFoundPage.vue'), 

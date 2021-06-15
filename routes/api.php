@@ -90,6 +90,39 @@ Route::group([ 'prefix' => 'v1', 'middleware' => 'api'], function(){
         Route::get('bank/{bankId}', 'App\Http\Controllers\Api\v1\BankController@getById');
         /* delete bank by id */
         Route::delete('bank/delete/{bankId}', 'App\Http\Controllers\Api\v1\BankController@delete');
+
+        /* Get all IVA details*/
+        Route::get('all-IVA', 'App\Http\Controllers\Api\v1\IVAController@getAll');
+        /* Add a IVA */
+        Route::post('IVA/create', 'App\Http\Controllers\Api\v1\IVAController@create');
+        /* Update a IVA */
+        Route::put('IVA/update', 'App\Http\Controllers\Api\v1\IVAController@update');
+        /* Get IVA detail by id */
+        Route::get('IVA/{IVAId}', 'App\Http\Controllers\Api\v1\IVAController@getById');
+        /* delete IVA by id */
+        Route::delete('IVA/delete/{IVAId}', 'App\Http\Controllers\Api\v1\IVAController@delete');
+
+        /* Get all invoice_texts details*/
+        Route::get('invoice-texts', 'App\Http\Controllers\Api\v1\InvoiceTextController@getAll');
+        /* Add a invoice-text */
+        Route::post('invoice-text/create', 'App\Http\Controllers\Api\v1\InvoiceTextController@create');
+        /* Update a invoice-text */
+        Route::put('invoice-text/update', 'App\Http\Controllers\Api\v1\InvoiceTextController@update');
+        /* Get invoice-text detail by id */
+        Route::get('invoice-text/{invoiceTextId}', 'App\Http\Controllers\Api\v1\InvoiceTextController@getById');
+        /* delete invoice-text by id */
+        Route::delete('invoice-text/delete/{invoiceTextId}', 'App\Http\Controllers\Api\v1\InvoiceTextController@delete');
+
+        /* Get all contacts details*/
+        Route::get('contacts', 'App\Http\Controllers\Api\v1\ContactController@getAll');
+        /* Add a contact */
+        Route::post('contact/create', 'App\Http\Controllers\Api\v1\ContactController@create');
+        /* Update a contact */
+        Route::put('contact/update', 'App\Http\Controllers\Api\v1\ContactController@update');
+        /* Get contact detail by id */
+        Route::get('contact/{contactId}', 'App\Http\Controllers\Api\v1\ContactController@getById');
+        /* delete contact by id */
+        Route::delete('contact/delete/{contactId}', 'App\Http\Controllers\Api\v1\ContactController@delete');
     });
 
 });

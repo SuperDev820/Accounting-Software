@@ -2,36 +2,36 @@ import ApiService from "@/api/api.service";
 import type from './type';
 
 const actions = {
-    getCompanies(context) {
+    getContacts(context) {
         ApiService.setHeader();
-        return new Promise((resolve) =>{
-            ApiService.get("api/v1/admin/companies")
+        return new Promise((resolve, reject) =>{
+            ApiService.get("api/v1/admin/contacts")
                 .then(({data}) => {
                     console.log(data);
-                    context.commit(type.SET_ALL_COMPANIES, data)
+                    context.commit(type.SET_ALL_CONTACTS, data)
                 })
                 .catch(({ response }) => {
-                    // context.commit(type.AUTH_LOGOUT);
+                    reject(response);
                 });
         });
     },
-    getCompanyById(context, companyId) {
+    getContactById(context, contactId) {
         ApiService.setHeader();
-        return new Promise((resolve) =>{
-            ApiService.get("api/v1/admin/company/" + companyId)
+        return new Promise((resolve, reject) =>{
+            ApiService.get("api/v1/admin/contact/" + contactId)
                 .then(({data}) => {
                     console.log(data);
-                    context.commit(type.SET_COMPANY, data)
+                    context.commit(type.SET_CONTACT, data)
                 })
                 .catch(({ response }) => {
-                    // context.commit(type.AUTH_LOGOUT);
+                    reject(response);
                 });
         });
     },
-    createCompany(context, companyInfo) {
+    createContact(context, contactInfo) {
         ApiService.setHeader();
         return new Promise((resolve, reject) => {
-            ApiService.post("api/v1/admin/company/create", companyInfo)
+            ApiService.post("api/v1/admin/contact/create", contactInfo)
                 .then((data) => {
                     resolve(data);
                     toastr.success('Creado Correctamente', {timeout: 1000,closeButton: true,closeMethod: 'fadeOut',closeDuration: 300});
@@ -42,10 +42,10 @@ const actions = {
                 });
         });
     },
-    updateCompany(context, companyInfo) {
+    updateContact(context, contactInfo) {
         ApiService.setHeader();
         return new Promise((resolve, reject) => {
-            ApiService.put("api/v1/admin/company/update", companyInfo)
+            ApiService.put("api/v1/admin/contact/update", contactInfo)
                 .then((data) => {
                     resolve(data);
                     toastr.success('Actualizado Correctamente', {timeout: 1000,closeButton: true,closeMethod: 'fadeOut',closeDuration: 300});
@@ -56,12 +56,12 @@ const actions = {
                 });
         });
     },
-    deleteCompany(context, companyId) {
+    deleteContact(context, contactId) {
         ApiService.setHeader();
-        return new Promise((resolve) =>{
-            ApiService.delete("api/v1/admin/company/delete/" + companyId)
+        return new Promise((resolve, reject) =>{
+            ApiService.delete("api/v1/admin/contact/delete/" + contactId)
                 .then(({data}) => {
-                    context.commit(type.SET_ALL_COMPANIES, data)
+                    context.commit(type.SET_ALL_CONTACTS, data)
                     toastr.success('Eliminado Correctamente', {timeout: 1000,closeButton: true,closeMethod: 'fadeOut',closeDuration: 300});
                 })
                 .catch(({ response }) => {

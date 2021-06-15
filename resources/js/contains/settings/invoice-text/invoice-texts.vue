@@ -7,7 +7,7 @@
 
 	export default {
 		page: {
-        title: "Listado de Empresas",
+        title: "Listado de Textos de Factura",
         meta: [{ name: "description", content: appConfig.description }]
     },
     components: {
@@ -16,14 +16,14 @@
     },
     data() {
       return {
-        title: "Listado de Empresas",
+        title: "Listado de Textos de Factura",
         items: [
           {
             text: "Home",
             href: "/"
           },
           {
-            text: "Empresas",
+            text: "Textos de Factura",
             active: true
           }
         ],
@@ -33,11 +33,11 @@
         pageOptions: [10, 25, 50, 100],
         filter: null,
         filterOn: [],
-        sortBy: "IdEmpresa",
+        sortBy: "id",
         sortDesc: false,
         fields: [
-          { label: "Código", key: "IdEmpresa", sortable: true },
-          { label: "Nombre", key: "Descripcion", sortable: true },
+          { label: "Código", key: "id", sortable: true },
+          { label: "Nombre", key: "Descripcion", sortable: false },
           { label: "Acciones", key: "actions", sortable: false }
         ],
         deletingId: 0,
@@ -45,24 +45,24 @@
     },
     computed: {
       ...mapGetters([
-        'companies'
+        'invoiceTexts'
       ]),
       /**
        * Total no. of records
        */
       rows() {
-        return this.companies.length;
+        return this.invoiceTexts.length;
       }
     },
     mounted() {
       // Set the initial number of items
-      this.totalRows = this.companies.length;
-      this.getCompanies();
+      this.totalRows = this.invoiceTexts.length;
+      this.getInvoiceTexts();
     },
     methods: {
       ...mapActions([
-        'getCompanies',
-        'deleteCompany',
+        'getInvoiceTexts',
+        'deleteInvoiceText',
       ]),
       /**
        * Search the table data with search input
@@ -76,7 +76,7 @@
         this.deletingId = id;
       },
       realDelete() {
-        this.deleteCompany(this.deletingId);
+        this.deleteInvoiceText(this.deletingId);
         this.$bvModal.hide('delete-modal');
       }
     }
@@ -86,10 +86,10 @@
   <Layout>
     <PageHeader :title="title" :items="items">
       <div class="float-right">
-        <router-link to="/settings/company/create"
+        <router-link :to="{name: 'InvoiceTextCreate'}"
           class="btn btn-info btn-block d-inline-block"
         >
-          <i class="fas fa-plus mr-1"></i> AÑADIR EMPRESA
+          <i class="fas fa-plus mr-1"></i> Agregar Textos de Factura
         </router-link>
       </div>
     </PageHeader>
@@ -126,7 +126,7 @@
             <!-- Table -->
             <div class="table-responsive mb-0">
               <b-table
-                :items="companies"
+                :items="invoiceTexts"
                 :fields="fields"
                 responsive="sm"
                 :per-page="perPage"
@@ -138,7 +138,7 @@
                 @filtered="onFiltered"
               >
                 <template #cell(actions)="row">
-                  <router-link :to="{ name: 'CompanyEdit', params: { companyId: row.item.id }}" class="btn btn-sm btn-success">
+                  <router-link :to="{ name: 'InvoiceTextEdit', params: { invoiceTextId: row.item.id }}" class="btn btn-sm btn-success">
                     <i class="far fa-edit"></i>
                   </router-link>
                   <b-button size="sm" variant="danger" @click="setId(row.item.id)" v-b-modal.delete-modal>
