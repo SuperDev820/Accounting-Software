@@ -35,12 +35,22 @@ export default {
       isError: false,
       Error: null,
       typeform: {
-        code: "",
         name: "",
-        image: "",
-        direction: "",
-        title: "",
-        return: "",
+        organization: "",
+        position: "",
+        email: "",
+        webpage: "",
+        work_tel: "",
+        work_tel2: "",
+        home_tel: "",
+        mobile: "",
+        fax: "",
+        work_address: "",
+        home_address: "",
+        file_as: "",
+        observation: "",
+        commission_formula: "",
+        currency: "",
       },
       typesubmit: false,
       tryingToSubmit: false,
@@ -71,12 +81,22 @@ export default {
       this.tryingToSubmit = true;
       return (
         this.createContact({
-            IdEmpresa: this.typeform.code,
             name: this.typeform.name,
-            image: this.typeform.image,
-            title: this.typeform.title,
-            direction: this.typeform.direction,
-            return: this.typeform.return,
+            organization: this.typeform.organization,
+            position: this.typeform.position,
+            email: this.typeform.email,
+            webpage: this.typeform.webpage,
+            work_tel: this.typeform.work_tel,
+            work_tel2: this.typeform.work_tel2,
+            home_tel: this.typeform.home_tel,
+            mobile: this.typeform.mobile,
+            fax: this.typeform.fax,
+            work_address: this.typeform.work_address,
+            home_address: this.typeform.home_address,
+            file_as: this.typeform.file_as,
+            observation: this.typeform.observation,
+            commission_formula: this.typeform.commission_formula,
+            currency: this.typeform.currency,
           })
           .then((res) => {
             this.$router.push({name: "Contacts"});
@@ -124,27 +144,90 @@ export default {
               </div>
 
               <div class="form-group">
-                <label>Nombre: </label>
+                <label>Organización: </label>
                 <input
-                  v-model="typeform.name"
+                  v-model="typeform.organization"
                   type="text"
                   class="form-control"
                 />
               </div>
 
               <div class="form-group">
-                <label>Nombre Imagen: </label>
+                <label>Archivar Como: </label>
                 <input
-                  v-model="typeform.image"
+                  v-model="typeform.file_as"
                   type="text"
                   class="form-control"
                 />
               </div>
 
               <div class="form-group">
-                <label>Título: </label>
+                <label>Puesto: </label>
                 <input
-                  v-model="typeform.title"
+                  v-model="typeform.position"
+                  type="text"
+                  class="form-control"
+                />
+              </div>
+
+              <div class="form-group">
+                <label>Email: </label>
+                <input
+                  v-model="typeform.email"
+                  type="email"
+                  class="form-control"
+                />
+              </div>
+
+              <div class="form-group">
+                <label>Página Web: </label>
+                <input
+                  v-model="typeform.webpage"
+                  type="text"
+                  class="form-control"
+                />
+              </div>
+
+              <div class="form-group">
+                <label>Tel. Trabajo: </label>
+                <input
+                  v-model="typeform.work_tel"
+                  type="text"
+                  class="form-control"
+                />
+              </div>
+
+              <div class="form-group">
+                <label>Tel. Trabajo 2: </label>
+                <input
+                  v-model="typeform.work_tel2"
+                  type="text"
+                  class="form-control"
+                />
+              </div>
+
+              <div class="form-group">
+                <label>Tel. Particular: </label>
+                <input
+                  v-model="typeform.home_tel"
+                  type="text"
+                  class="form-control"
+                />
+              </div>
+
+              <div class="form-group">
+                <label>Móvil: </label>
+                <input
+                  v-model="typeform.mobile"
+                  type="text"
+                  class="form-control"
+                />
+              </div>
+
+              <div class="form-group">
+                <label>Fax: </label>
+                <input
+                  v-model="typeform.fax"
                   type="text"
                   class="form-control"
                 />
@@ -153,15 +236,40 @@ export default {
               <div class="form-group">
                 <label>Dirección: </label>
                 <textarea
-                  v-model="typeform.direction"
+                  v-model="typeform.work_address"
                   class="form-control"
                 ></textarea>
               </div>
 
               <div class="form-group">
-                <label>Remite: </label>
+                <label>Dirección Particular: </label>
+                <textarea
+                  v-model="typeform.home_address"
+                  class="form-control"
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <label>Observaciones: </label>
+                <textarea
+                  v-model="typeform.observation"
+                  class="form-control"
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <label>Fórmula Comisión: </label>
                 <input
-                  v-model="typeform.return"
+                  v-model="typeform.commission_formula"
+                  type="text"
+                  class="form-control"
+                />
+              </div>
+
+              <div class="form-group">
+                <label>Moneda: </label>
+                <input
+                  v-model="typeform.currency"
                   type="text"
                   class="form-control"
                 />

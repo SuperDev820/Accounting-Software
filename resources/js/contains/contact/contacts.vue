@@ -180,9 +180,3 @@
     </b-modal>
   </Layout>
 </template>
-
-<style>
-  .table thead tr {
-    background-color: #c7e6fd;
-  }
-</style>

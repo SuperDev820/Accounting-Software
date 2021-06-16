@@ -60,9 +60,21 @@ class ContactController extends Controller
 
         $contact = Contact::create([
             'Nombre' => $request->name,
-            'Oficina' => $request->office,
-            'IBAN' => $request->iban,
-            'SWIFT' => $request->bic,
+            'Organizacion' => $request->organization,
+            'Puesto' => $request->position,
+            'Email' => $request->email,
+            'PaginaWeb' => $request->webpage,
+            'TelTrabajo' => $request->work_tel,
+            'TelTrabajo2' => $request->work_tel2,
+            'TelParticular' => $request->home_tel,
+            'TelMovil' => $request->mobile,
+            'Fax' => $request->fax,
+            'DireccionTrabajo' => $request->work_address,
+            'DireccionParticular' => $request->home_address,
+            'ArchivarComo' => $request->file_as,
+            'Observaciones' => $request->observation,
+            'FormulaComision' => $request->commission_formula,
+            'Moneda' => $request->currency,
         ]);
         
         return response()->json([
@@ -91,9 +103,21 @@ class ContactController extends Controller
         $contact = Contact::find($request->id);
         $contact -> update([
             'Nombre' => $request->name,
-            'Oficina' => $request->office,
-            'IBAN' => $request->iban,
-            'SWIFT' => $request->bic,
+            'Organizacion' => $request->organization,
+            'Puesto' => $request->position,
+            'Email' => $request->email,
+            'PaginaWeb' => $request->webpage,
+            'TelTrabajo' => $request->work_tel,
+            'TelTrabajo2' => $request->work_tel2,
+            'TelParticular' => $request->home_tel,
+            'TelMovil' => $request->mobile,
+            'Fax' => $request->fax,
+            'DireccionTrabajo' => $request->work_address,
+            'DireccionParticular' => $request->home_address,
+            'ArchivarComo' => $request->file_as,
+            'Observaciones' => $request->observation,
+            'FormulaComision' => $request->commission_formula,
+            'Moneda' => $request->currency,
         ]);
 
         return response()->json([

@@ -133,31 +133,31 @@ export default {
 
             <li class="nav-item">
               <router-link tag="a" class="nav-link side-nav-link" :to="{name: 'Contacts'}">
-                <i class="ti-home mr-2"></i>Contactos
+                <i class="far fa-address-book mr-2"></i>Contactos
               </router-link>
             </li>
 
             <li class="nav-item">
               <router-link tag="a" class="nav-link side-nav-link" :to="{name: 'Companies'}">
-                <i class="ti-home mr-2"></i>Pedidos
+                <i class="fab fa-jedi-order mr-2"></i>Pedidos
               </router-link>
             </li>
 
             <li class="nav-item">
               <router-link tag="a" class="nav-link side-nav-link" :to="{name: 'Companies'}">
-                <i class="ti-home mr-2"></i>Comisiones
+                <i class="far fa-building mr-2"></i>Comisiones
               </router-link>
             </li>
 
             <li class="nav-item">
               <router-link tag="a" class="nav-link side-nav-link" :to="{name: 'Companies'}">
-                <i class="ti-home mr-2"></i>Expedientes
+                <i class="far fa-folder-open mr-2"></i>Expedientes
               </router-link>
             </li>
 
             <li class="nav-item">
               <router-link tag="a" class="nav-link side-nav-link" :to="{name: 'Companies'}">
-                <i class="ti-home mr-2"></i>Facturas
+                <i class="fas fa-file-invoice-dollar mr-2"></i>Facturas
               </router-link>
             </li>
           </ul>

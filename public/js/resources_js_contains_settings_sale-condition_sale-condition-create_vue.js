@@ -1460,7 +1460,7 @@ var render = function() {
                         attrs: { tag: "a", to: { name: "Contacts" } }
                       },
                       [
-                        _c("i", { staticClass: "ti-home mr-2" }),
+                        _c("i", { staticClass: "far fa-address-book mr-2" }),
                         _vm._v("Contactos\n            ")
                       ]
                     )
@@ -1479,7 +1479,7 @@ var render = function() {
                         attrs: { tag: "a", to: { name: "Companies" } }
                       },
                       [
-                        _c("i", { staticClass: "ti-home mr-2" }),
+                        _c("i", { staticClass: "fab fa-jedi-order mr-2" }),
                         _vm._v("Pedidos\n            ")
                       ]
                     )
@@ -1498,7 +1498,7 @@ var render = function() {
                         attrs: { tag: "a", to: { name: "Companies" } }
                       },
                       [
-                        _c("i", { staticClass: "ti-home mr-2" }),
+                        _c("i", { staticClass: "far fa-building mr-2" }),
                         _vm._v("Comisiones\n            ")
                       ]
                     )
@@ -1517,7 +1517,7 @@ var render = function() {
                         attrs: { tag: "a", to: { name: "Companies" } }
                       },
                       [
-                        _c("i", { staticClass: "ti-home mr-2" }),
+                        _c("i", { staticClass: "far fa-folder-open mr-2" }),
                         _vm._v("Expedientes\n            ")
                       ]
                     )
@@ -1536,7 +1536,9 @@ var render = function() {
                         attrs: { tag: "a", to: { name: "Companies" } }
                       },
                       [
-                        _c("i", { staticClass: "ti-home mr-2" }),
+                        _c("i", {
+                          staticClass: "fas fa-file-invoice-dollar mr-2"
+                        }),
                         _vm._v("Facturas\n            ")
                       ]
                     )

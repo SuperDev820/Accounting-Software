@@ -107,12 +107,22 @@ __webpack_require__.r(__webpack_exports__);
       isError: false,
       Error: null,
       typeform: {
-        code: "",
         name: "",
-        image: "",
-        direction: "",
-        title: "",
-        "return": ""
+        organization: "",
+        position: "",
+        email: "",
+        webpage: "",
+        work_tel: "",
+        work_tel2: "",
+        home_tel: "",
+        mobile: "",
+        fax: "",
+        work_address: "",
+        home_address: "",
+        file_as: "",
+        observation: "",
+        commission_formula: "",
+        currency: ""
       },
       typesubmit: false,
       tryingToSubmit: false
@@ -128,15 +138,25 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.getContactById(this.$route.params.contactId);
   },
-  computed: (0,E_Mikel_Accounting_Software_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_3__.default)({}, (0,vuex__WEBPACK_IMPORTED_MODULE_8__.mapGetters)(['company'])),
+  computed: (0,E_Mikel_Accounting_Software_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_3__.default)({}, (0,vuex__WEBPACK_IMPORTED_MODULE_8__.mapGetters)(['contact'])),
   watch: {
     contact: function contact() {
-      this.typeform.code = this.contact.IdEmpresa;
-      this.typeform.name = this.contact.Descripcion;
-      this.typeform.image = this.contact.Ruta;
-      this.typeform.title = this.contact.Titulo;
-      this.typeform.direction = this.contact.Direccion;
-      this.typeform["return"] = this.contact.Remite;
+      this.typeform.name = this.contact.Nombre;
+      this.typeform.organization = this.contact.Organizacion;
+      this.typeform.position = this.contact.Puesto;
+      this.typeform.email = this.contact.Email;
+      this.typeform.webpage = this.contact.PaginaWeb;
+      this.typeform.work_tel = this.contact.TelTrabajo;
+      this.typeform.work_tel2 = this.contact.TelTrabajo2;
+      this.typeform.home_tel = this.contact.TelParticular;
+      this.typeform.mobile = this.contact.TelMovil;
+      this.typeform.fax = this.contact.Fax;
+      this.typeform.work_address = this.contact.DireccionTrabajo;
+      this.typeform.home_address = this.contact.DireccionParticular;
+      this.typeform.file_as = this.contact.ArchivarComo;
+      this.typeform.observation = this.contact.Observaciones;
+      this.typeform.commission_formula = this.contact.FormulaComision;
+      this.typeform.currency = this.contact.Moneda;
     }
   },
   methods: (0,E_Mikel_Accounting_Software_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_3__.default)((0,E_Mikel_Accounting_Software_node_modules_babel_runtime_helpers_esm_objectSpread2__WEBPACK_IMPORTED_MODULE_3__.default)({}, (0,vuex__WEBPACK_IMPORTED_MODULE_8__.mapActions)(['updateContact', 'getContactById'])), {}, {
@@ -160,12 +180,22 @@ __webpack_require__.r(__webpack_exports__);
       this.tryingToSubmit = true;
       return this.updateContact({
         id: this.$route.params.contactId,
-        IdEmpresa: this.typeform.code,
         name: this.typeform.name,
-        image: this.typeform.image,
-        title: this.typeform.title,
-        direction: this.typeform.direction,
-        "return": this.typeform["return"]
+        organization: this.typeform.organization,
+        position: this.typeform.position,
+        email: this.typeform.email,
+        webpage: this.typeform.webpage,
+        work_tel: this.typeform.work_tel,
+        work_tel2: this.typeform.work_tel2,
+        home_tel: this.typeform.home_tel,
+        mobile: this.typeform.mobile,
+        fax: this.typeform.fax,
+        work_address: this.typeform.work_address,
+        home_address: this.typeform.home_address,
+        file_as: this.typeform.file_as,
+        observation: this.typeform.observation,
+        commission_formula: this.typeform.commission_formula,
+        currency: this.typeform.currency
       }).then(function (res) {
         _this.$router.push({
           name: "Contacts"
@@ -1805,7 +1835,7 @@ var render = function() {
                         attrs: { tag: "a", to: { name: "Contacts" } }
                       },
                       [
-                        _c("i", { staticClass: "ti-home mr-2" }),
+                        _c("i", { staticClass: "far fa-address-book mr-2" }),
                         _vm._v("Contactos\n            ")
                       ]
                     )
@@ -1824,7 +1854,7 @@ var render = function() {
                         attrs: { tag: "a", to: { name: "Companies" } }
                       },
                       [
-                        _c("i", { staticClass: "ti-home mr-2" }),
+                        _c("i", { staticClass: "fab fa-jedi-order mr-2" }),
                         _vm._v("Pedidos\n            ")
                       ]
                     )
@@ -1843,7 +1873,7 @@ var render = function() {
                         attrs: { tag: "a", to: { name: "Companies" } }
                       },
                       [
-                        _c("i", { staticClass: "ti-home mr-2" }),
+                        _c("i", { staticClass: "far fa-building mr-2" }),
                         _vm._v("Comisiones\n            ")
                       ]
                     )
@@ -1862,7 +1892,7 @@ var render = function() {
                         attrs: { tag: "a", to: { name: "Companies" } }
                       },
                       [
-                        _c("i", { staticClass: "ti-home mr-2" }),
+                        _c("i", { staticClass: "far fa-folder-open mr-2" }),
                         _vm._v("Expedientes\n            ")
                       ]
                     )
@@ -1881,7 +1911,9 @@ var render = function() {
                         attrs: { tag: "a", to: { name: "Companies" } }
                       },
                       [
-                        _c("i", { staticClass: "ti-home mr-2" }),
+                        _c("i", {
+                          staticClass: "fas fa-file-invoice-dollar mr-2"
+                        }),
                         _vm._v("Facturas\n            ")
                       ]
                     )

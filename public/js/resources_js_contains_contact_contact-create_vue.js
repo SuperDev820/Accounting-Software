@@ -107,12 +107,22 @@ __webpack_require__.r(__webpack_exports__);
       isError: false,
       Error: null,
       typeform: {
-        code: "",
         name: "",
-        image: "",
-        direction: "",
-        title: "",
-        "return": ""
+        organization: "",
+        position: "",
+        email: "",
+        webpage: "",
+        work_tel: "",
+        work_tel2: "",
+        home_tel: "",
+        mobile: "",
+        fax: "",
+        work_address: "",
+        home_address: "",
+        file_as: "",
+        observation: "",
+        commission_formula: "",
+        currency: ""
       },
       typesubmit: false,
       tryingToSubmit: false
@@ -145,12 +155,22 @@ __webpack_require__.r(__webpack_exports__);
 
       this.tryingToSubmit = true;
       return this.createContact({
-        IdEmpresa: this.typeform.code,
         name: this.typeform.name,
-        image: this.typeform.image,
-        title: this.typeform.title,
-        direction: this.typeform.direction,
-        "return": this.typeform["return"]
+        organization: this.typeform.organization,
+        position: this.typeform.position,
+        email: this.typeform.email,
+        webpage: this.typeform.webpage,
+        work_tel: this.typeform.work_tel,
+        work_tel2: this.typeform.work_tel2,
+        home_tel: this.typeform.home_tel,
+        mobile: this.typeform.mobile,
+        fax: this.typeform.fax,
+        work_address: this.typeform.work_address,
+        home_address: this.typeform.home_address,
+        file_as: this.typeform.file_as,
+        observation: this.typeform.observation,
+        commission_formula: this.typeform.commission_formula,
+        currency: this.typeform.currency
       }).then(function (res) {
         _this.$router.push({
           name: "Contacts"
@@ -1415,78 +1435,292 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
-                      _c("label", [_vm._v("Nombre: ")]),
+                      _c("label", [_vm._v("Organización: ")]),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.typeform.name,
-                            expression: "typeform.name"
+                            value: _vm.typeform.organization,
+                            expression: "typeform.organization"
                           }
                         ],
                         staticClass: "form-control",
                         attrs: { type: "text" },
-                        domProps: { value: _vm.typeform.name },
+                        domProps: { value: _vm.typeform.organization },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.$set(_vm.typeform, "name", $event.target.value)
+                            _vm.$set(
+                              _vm.typeform,
+                              "organization",
+                              $event.target.value
+                            )
                           }
                         }
                       })
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
-                      _c("label", [_vm._v("Nombre Imagen: ")]),
+                      _c("label", [_vm._v("Archivar Como: ")]),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.typeform.image,
-                            expression: "typeform.image"
+                            value: _vm.typeform.file_as,
+                            expression: "typeform.file_as"
                           }
                         ],
                         staticClass: "form-control",
                         attrs: { type: "text" },
-                        domProps: { value: _vm.typeform.image },
+                        domProps: { value: _vm.typeform.file_as },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.$set(_vm.typeform, "image", $event.target.value)
+                            _vm.$set(
+                              _vm.typeform,
+                              "file_as",
+                              $event.target.value
+                            )
                           }
                         }
                       })
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
-                      _c("label", [_vm._v("Título: ")]),
+                      _c("label", [_vm._v("Puesto: ")]),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.typeform.title,
-                            expression: "typeform.title"
+                            value: _vm.typeform.position,
+                            expression: "typeform.position"
                           }
                         ],
                         staticClass: "form-control",
                         attrs: { type: "text" },
-                        domProps: { value: _vm.typeform.title },
+                        domProps: { value: _vm.typeform.position },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.$set(_vm.typeform, "title", $event.target.value)
+                            _vm.$set(
+                              _vm.typeform,
+                              "position",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Email: ")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.typeform.email,
+                            expression: "typeform.email"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "email" },
+                        domProps: { value: _vm.typeform.email },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.typeform, "email", $event.target.value)
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Página Web: ")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.typeform.webpage,
+                            expression: "typeform.webpage"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.typeform.webpage },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.typeform,
+                              "webpage",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Tel. Trabajo: ")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.typeform.work_tel,
+                            expression: "typeform.work_tel"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.typeform.work_tel },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.typeform,
+                              "work_tel",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Tel. Trabajo 2: ")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.typeform.work_tel2,
+                            expression: "typeform.work_tel2"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.typeform.work_tel2 },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.typeform,
+                              "work_tel2",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Tel. Particular: ")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.typeform.home_tel,
+                            expression: "typeform.home_tel"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.typeform.home_tel },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.typeform,
+                              "home_tel",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Móvil: ")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.typeform.mobile,
+                            expression: "typeform.mobile"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.typeform.mobile },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.typeform,
+                              "mobile",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Fax: ")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.typeform.fax,
+                            expression: "typeform.fax"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.typeform.fax },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.typeform, "fax", $event.target.value)
                           }
                         }
                       })
@@ -1500,12 +1734,12 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.typeform.direction,
-                            expression: "typeform.direction"
+                            value: _vm.typeform.work_address,
+                            expression: "typeform.work_address"
                           }
                         ],
                         staticClass: "form-control",
-                        domProps: { value: _vm.typeform.direction },
+                        domProps: { value: _vm.typeform.work_address },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
@@ -1513,7 +1747,7 @@ var render = function() {
                             }
                             _vm.$set(
                               _vm.typeform,
-                              "direction",
+                              "work_address",
                               $event.target.value
                             )
                           }
@@ -1522,20 +1756,19 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "form-group" }, [
-                      _c("label", [_vm._v("Remite: ")]),
+                      _c("label", [_vm._v("Dirección Particular: ")]),
                       _vm._v(" "),
-                      _c("input", {
+                      _c("textarea", {
                         directives: [
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.typeform.return,
-                            expression: "typeform.return"
+                            value: _vm.typeform.home_address,
+                            expression: "typeform.home_address"
                           }
                         ],
                         staticClass: "form-control",
-                        attrs: { type: "text" },
-                        domProps: { value: _vm.typeform.return },
+                        domProps: { value: _vm.typeform.home_address },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
@@ -1543,7 +1776,96 @@ var render = function() {
                             }
                             _vm.$set(
                               _vm.typeform,
-                              "return",
+                              "home_address",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Observaciones: ")]),
+                      _vm._v(" "),
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.typeform.observation,
+                            expression: "typeform.observation"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        domProps: { value: _vm.typeform.observation },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.typeform,
+                              "observation",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Fórmula Comisión: ")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.typeform.commission_formula,
+                            expression: "typeform.commission_formula"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.typeform.commission_formula },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.typeform,
+                              "commission_formula",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Moneda: ")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.typeform.currency,
+                            expression: "typeform.currency"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.typeform.currency },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.typeform,
+                              "currency",
                               $event.target.value
                             )
                           }
@@ -1799,7 +2121,7 @@ var render = function() {
                         attrs: { tag: "a", to: { name: "Contacts" } }
                       },
                       [
-                        _c("i", { staticClass: "ti-home mr-2" }),
+                        _c("i", { staticClass: "far fa-address-book mr-2" }),
                         _vm._v("Contactos\n            ")
                       ]
                     )
@@ -1818,7 +2140,7 @@ var render = function() {
                         attrs: { tag: "a", to: { name: "Companies" } }
                       },
                       [
-                        _c("i", { staticClass: "ti-home mr-2" }),
+                        _c("i", { staticClass: "fab fa-jedi-order mr-2" }),
                         _vm._v("Pedidos\n            ")
                       ]
                     )
@@ -1837,7 +2159,7 @@ var render = function() {
                         attrs: { tag: "a", to: { name: "Companies" } }
                       },
                       [
-                        _c("i", { staticClass: "ti-home mr-2" }),
+                        _c("i", { staticClass: "far fa-building mr-2" }),
                         _vm._v("Comisiones\n            ")
                       ]
                     )
@@ -1856,7 +2178,7 @@ var render = function() {
                         attrs: { tag: "a", to: { name: "Companies" } }
                       },
                       [
-                        _c("i", { staticClass: "ti-home mr-2" }),
+                        _c("i", { staticClass: "far fa-folder-open mr-2" }),
                         _vm._v("Expedientes\n            ")
                       ]
                     )
@@ -1875,7 +2197,9 @@ var render = function() {
                         attrs: { tag: "a", to: { name: "Companies" } }
                       },
                       [
-                        _c("i", { staticClass: "ti-home mr-2" }),
+                        _c("i", {
+                          staticClass: "fas fa-file-invoice-dollar mr-2"
+                        }),
                         _vm._v("Facturas\n            ")
                       ]
                     )

@@ -35,12 +35,22 @@ export default {
       isError: false,
       Error: null,
       typeform: {
-        code: "",
         name: "",
-        image: "",
-        direction: "",
-        title: "",
-        return: "",
+        organization: "",
+        position: "",
+        email: "",
+        webpage: "",
+        work_tel: "",
+        work_tel2: "",
+        home_tel: "",
+        mobile: "",
+        fax: "",
+        work_address: "",
+        home_address: "",
+        file_as: "",
+        observation: "",
+        commission_formula: "",
+        currency: "",
       },
       typesubmit: false,
       tryingToSubmit: false,
@@ -56,17 +66,27 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'company',
+      'contact',
     ]),
   },
   watch: {
     contact: function () {
-      this.typeform.code = this.contact.IdEmpresa
-      this.typeform.name = this.contact.Descripcion
-      this.typeform.image = this.contact.Ruta
-      this.typeform.title = this.contact.Titulo
-      this.typeform.direction = this.contact.Direccion
-      this.typeform.return = this.contact.Remite
+      this.typeform.name = this.contact.Nombre
+      this.typeform.organization = this.contact.Organizacion
+      this.typeform.position = this.contact.Puesto
+      this.typeform.email = this.contact.Email
+      this.typeform.webpage = this.contact.PaginaWeb
+      this.typeform.work_tel = this.contact.TelTrabajo
+      this.typeform.work_tel2 = this.contact.TelTrabajo2
+      this.typeform.home_tel = this.contact.TelParticular
+      this.typeform.mobile = this.contact.TelMovil
+      this.typeform.fax = this.contact.Fax
+      this.typeform.work_address = this.contact.DireccionTrabajo
+      this.typeform.home_address = this.contact.DireccionParticular
+      this.typeform.file_as = this.contact.ArchivarComo
+      this.typeform.observation = this.contact.Observaciones
+      this.typeform.commission_formula = this.contact.FormulaComision
+      this.typeform.currency = this.contact.Moneda
     },
   },
   methods: {
@@ -91,12 +111,22 @@ export default {
       return (
         this.updateContact({
             id: this.$route.params.contactId,
-            IdEmpresa: this.typeform.code,
             name: this.typeform.name,
-            image: this.typeform.image,
-            title: this.typeform.title,
-            direction: this.typeform.direction,
-            return: this.typeform.return,
+            organization: this.typeform.organization,
+            position: this.typeform.position,
+            email: this.typeform.email,
+            webpage: this.typeform.webpage,
+            work_tel: this.typeform.work_tel,
+            work_tel2: this.typeform.work_tel2,
+            home_tel: this.typeform.home_tel,
+            mobile: this.typeform.mobile,
+            fax: this.typeform.fax,
+            work_address: this.typeform.work_address,
+            home_address: this.typeform.home_address,
+            file_as: this.typeform.file_as,
+            observation: this.typeform.observation,
+            commission_formula: this.typeform.commission_formula,
+            currency: this.typeform.currency,
           })
           .then((res) => {
             this.$router.push({name: "Contacts"});

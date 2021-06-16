@@ -13,8 +13,22 @@ class Contact extends Model
 
     protected $fillable = [
         'Nombre',
-        'Oficina',
-        'IBAN',
-        'SWIFT',
+        'Organizacion',
+        'Departamento',
+        'Puesto',
+        'Email',
+        'PaginaWeb',
+        'TelTrabajo',
+        'TelTrabajo2',
+        'TelParticular',
+        'TelMovil',
+        'Fax',
+        'DireccionTrabajo',
+        'DireccionParticular',
+        'ArchivarComo',
+        'NIF',
+        'Observaciones',
+        'FormulaComision',
+        'Moneda',
     ];
 }
