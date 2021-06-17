@@ -7,6 +7,7 @@ import { mapActions, mapGetters } from 'vuex';
 
 import {
   required,
+  email,
 } from "vuelidate/lib/validators";
 
 export default {
@@ -59,6 +60,7 @@ export default {
   validations: {
     typeform: {
       name: { required },
+      email: { email },
     }
   },
   methods: {
@@ -129,8 +131,8 @@ export default {
               class="mt-3"
               dismissible
             >{{ Error }}</b-alert>
-            <form action="#" @submit.prevent="typeForm">
-              <div class="form-group">
+            <form action="#" @submit.prevent="typeForm" class="row">
+              <div class="form-group col-6">
                 <label>Nombre: </label>
                 <input
                   v-model="typeform.name"
@@ -143,7 +145,7 @@ export default {
                 </div>
               </div>
 
-              <div class="form-group">
+              <div class="form-group col-6">
                 <label>Organización: </label>
                 <input
                   v-model="typeform.organization"
@@ -152,16 +154,7 @@ export default {
                 />
               </div>
 
-              <div class="form-group">
-                <label>Archivar Como: </label>
-                <input
-                  v-model="typeform.file_as"
-                  type="text"
-                  class="form-control"
-                />
-              </div>
-
-              <div class="form-group">
+              <div class="form-group col-6">
                 <label>Puesto: </label>
                 <input
                   v-model="typeform.position"
@@ -170,16 +163,29 @@ export default {
                 />
               </div>
 
-              <div class="form-group">
+              <div class="form-group col-6">
+                <label>Archivar Como: </label>
+                <input
+                  v-model="typeform.file_as"
+                  type="text"
+                  class="form-control"
+                />
+              </div>
+
+              <div class="form-group col-6">
                 <label>Email: </label>
                 <input
                   v-model="typeform.email"
                   type="email"
                   class="form-control"
+                  :class="{ 'is-invalid': typesubmit && $v.typeform.email.$error }"
                 />
+                <div v-if="typesubmit && $v.typeform.email.$error" class="invalid-feedback">
+                  <span v-if="!$v.typeform.email.email">Debe ser un e-mail válido.</span>
+                </div>
               </div>
 
-              <div class="form-group">
+              <div class="form-group col-6">
                 <label>Página Web: </label>
                 <input
                   v-model="typeform.webpage"
@@ -188,7 +194,7 @@ export default {
                 />
               </div>
 
-              <div class="form-group">
+              <div class="form-group col-6">
                 <label>Tel. Trabajo: </label>
                 <input
                   v-model="typeform.work_tel"
@@ -197,7 +203,7 @@ export default {
                 />
               </div>
 
-              <div class="form-group">
+              <div class="form-group col-6">
                 <label>Tel. Trabajo 2: </label>
                 <input
                   v-model="typeform.work_tel2"
@@ -206,7 +212,7 @@ export default {
                 />
               </div>
 
-              <div class="form-group">
+              <div class="form-group col-6">
                 <label>Tel. Particular: </label>
                 <input
                   v-model="typeform.home_tel"
@@ -215,7 +221,7 @@ export default {
                 />
               </div>
 
-              <div class="form-group">
+              <div class="form-group col-6">
                 <label>Móvil: </label>
                 <input
                   v-model="typeform.mobile"
@@ -224,7 +230,7 @@ export default {
                 />
               </div>
 
-              <div class="form-group">
+              <div class="form-group col-8">
                 <label>Fax: </label>
                 <input
                   v-model="typeform.fax"
@@ -233,7 +239,7 @@ export default {
                 />
               </div>
 
-              <div class="form-group">
+              <div class="form-group col-8">
                 <label>Dirección: </label>
                 <textarea
                   v-model="typeform.work_address"
@@ -241,7 +247,7 @@ export default {
                 ></textarea>
               </div>
 
-              <div class="form-group">
+              <div class="form-group col-8">
                 <label>Dirección Particular: </label>
                 <textarea
                   v-model="typeform.home_address"
@@ -249,7 +255,7 @@ export default {
                 ></textarea>
               </div>
 
-              <div class="form-group">
+              <div class="form-group col-8">
                 <label>Observaciones: </label>
                 <textarea
                   v-model="typeform.observation"
@@ -257,25 +263,27 @@ export default {
                 ></textarea>
               </div>
 
-              <div class="form-group">
+              <div class="form-group col-8">
                 <label>Fórmula Comisión: </label>
                 <input
                   v-model="typeform.commission_formula"
                   type="text"
                   class="form-control"
                 />
+                <span class="font-13 text-muted">(TM: Total peso / TE: Total Euros)</span>
               </div>
 
-              <div class="form-group">
+              <div class="form-group col-5">
                 <label>Moneda: </label>
                 <input
                   v-model="typeform.currency"
                   type="text"
                   class="form-control"
                 />
+                <span class="font-13 text-muted">(€ Euro / $ Dolar)</span>
               </div>
 
-              <div class="form-group mt-5 mb-0">
+              <div class="form-group col-12 mt-5 mb-0">
                 <div>
                   <button type="submit" class="btn btn-primary" :disabled="tryingToSubmit">
                     <i class="fa fa-spinner fa-spin" v-if="tryingToSubmit"></i> Guardar

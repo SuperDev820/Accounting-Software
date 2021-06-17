@@ -1889,6 +1889,7 @@ var render = function() {
                 _c(
                   "form",
                   {
+                    staticClass: "row",
                     attrs: { action: "#" },
                     on: {
                       submit: function($event) {
@@ -1898,7 +1899,7 @@ var render = function() {
                     }
                   },
                   [
-                    _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "form-group col-8" }, [
                       _c("label", [_vm._v("Nombre: ")]),
                       _vm._v(" "),
                       _c("input", {
@@ -1938,7 +1939,7 @@ var render = function() {
                         : _vm._e()
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "form-group mt-5 mb-0" }, [
+                    _c("div", { staticClass: "form-group col-12 mt-5 mb-0" }, [
                       _c(
                         "div",
                         [

@@ -132,6 +132,9 @@ __webpack_require__.r(__webpack_exports__);
     typeform: {
       name: {
         required: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_7__.required
+      },
+      email: {
+        email: vuelidate_lib_validators__WEBPACK_IMPORTED_MODULE_7__.email
       }
     }
   },
@@ -1385,6 +1388,7 @@ var render = function() {
                 _c(
                   "form",
                   {
+                    staticClass: "row",
                     attrs: { action: "#" },
                     on: {
                       submit: function($event) {
@@ -1394,7 +1398,7 @@ var render = function() {
                     }
                   },
                   [
-                    _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "form-group col-6" }, [
                       _c("label", [_vm._v("Nombre: ")]),
                       _vm._v(" "),
                       _c("input", {
@@ -1434,7 +1438,7 @@ var render = function() {
                         : _vm._e()
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "form-group col-6" }, [
                       _c("label", [_vm._v("Organización: ")]),
                       _vm._v(" "),
                       _c("input", {
@@ -1464,37 +1468,7 @@ var render = function() {
                       })
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
-                      _c("label", [_vm._v("Archivar Como: ")]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.typeform.file_as,
-                            expression: "typeform.file_as"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: { type: "text" },
-                        domProps: { value: _vm.typeform.file_as },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.typeform,
-                              "file_as",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "form-group col-6" }, [
                       _c("label", [_vm._v("Puesto: ")]),
                       _vm._v(" "),
                       _c("input", {
@@ -1524,7 +1498,37 @@ var render = function() {
                       })
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "form-group col-6" }, [
+                      _c("label", [_vm._v("Archivar Como: ")]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.typeform.file_as,
+                            expression: "typeform.file_as"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.typeform.file_as },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.typeform,
+                              "file_as",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "form-group col-6" }, [
                       _c("label", [_vm._v("Email: ")]),
                       _vm._v(" "),
                       _c("input", {
@@ -1537,6 +1541,10 @@ var render = function() {
                           }
                         ],
                         staticClass: "form-control",
+                        class: {
+                          "is-invalid":
+                            _vm.typesubmit && _vm.$v.typeform.email.$error
+                        },
                         attrs: { type: "email" },
                         domProps: { value: _vm.typeform.email },
                         on: {
@@ -1547,10 +1555,20 @@ var render = function() {
                             _vm.$set(_vm.typeform, "email", $event.target.value)
                           }
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _vm.typesubmit && _vm.$v.typeform.email.$error
+                        ? _c("div", { staticClass: "invalid-feedback" }, [
+                            !_vm.$v.typeform.email.email
+                              ? _c("span", [
+                                  _vm._v("Debe ser un e-mail válido.")
+                                ])
+                              : _vm._e()
+                          ])
+                        : _vm._e()
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "form-group col-6" }, [
                       _c("label", [_vm._v("Página Web: ")]),
                       _vm._v(" "),
                       _c("input", {
@@ -1580,7 +1598,7 @@ var render = function() {
                       })
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "form-group col-6" }, [
                       _c("label", [_vm._v("Tel. Trabajo: ")]),
                       _vm._v(" "),
                       _c("input", {
@@ -1610,7 +1628,7 @@ var render = function() {
                       })
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "form-group col-6" }, [
                       _c("label", [_vm._v("Tel. Trabajo 2: ")]),
                       _vm._v(" "),
                       _c("input", {
@@ -1640,7 +1658,7 @@ var render = function() {
                       })
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "form-group col-6" }, [
                       _c("label", [_vm._v("Tel. Particular: ")]),
                       _vm._v(" "),
                       _c("input", {
@@ -1670,7 +1688,7 @@ var render = function() {
                       })
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "form-group col-6" }, [
                       _c("label", [_vm._v("Móvil: ")]),
                       _vm._v(" "),
                       _c("input", {
@@ -1700,7 +1718,7 @@ var render = function() {
                       })
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "form-group col-8" }, [
                       _c("label", [_vm._v("Fax: ")]),
                       _vm._v(" "),
                       _c("input", {
@@ -1726,7 +1744,7 @@ var render = function() {
                       })
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "form-group col-8" }, [
                       _c("label", [_vm._v("Dirección: ")]),
                       _vm._v(" "),
                       _c("textarea", {
@@ -1755,7 +1773,7 @@ var render = function() {
                       })
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "form-group col-8" }, [
                       _c("label", [_vm._v("Dirección Particular: ")]),
                       _vm._v(" "),
                       _c("textarea", {
@@ -1784,7 +1802,7 @@ var render = function() {
                       })
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "form-group col-8" }, [
                       _c("label", [_vm._v("Observaciones: ")]),
                       _vm._v(" "),
                       _c("textarea", {
@@ -1813,7 +1831,7 @@ var render = function() {
                       })
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "form-group col-8" }, [
                       _c("label", [_vm._v("Fórmula Comisión: ")]),
                       _vm._v(" "),
                       _c("input", {
@@ -1840,10 +1858,14 @@ var render = function() {
                             )
                           }
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "font-13 text-muted" }, [
+                        _vm._v("(TM: Total peso / TE: Total Euros)")
+                      ])
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "form-group" }, [
+                    _c("div", { staticClass: "form-group col-5" }, [
                       _c("label", [_vm._v("Moneda: ")]),
                       _vm._v(" "),
                       _c("input", {
@@ -1870,10 +1892,14 @@ var render = function() {
                             )
                           }
                         }
-                      })
+                      }),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "font-13 text-muted" }, [
+                        _vm._v("(€ Euro / $ Dolar)")
+                      ])
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "form-group mt-5 mb-0" }, [
+                    _c("div", { staticClass: "form-group col-12 mt-5 mb-0" }, [
                       _c(
                         "div",
                         [

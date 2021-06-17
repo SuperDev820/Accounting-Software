@@ -130,8 +130,8 @@ export default {
               class="mt-3"
               dismissible
             >{{ Error }}</b-alert>
-            <form action="#" @submit.prevent="typeForm">
-              <div class="form-group">
+            <form action="#" @submit.prevent="typeForm" class="row">
+              <div class="form-group col-8">
                 <label>Empresa: </label>
                 <multiselect 
                   v-model="typeform.company" 
@@ -145,7 +145,7 @@ export default {
                 </div>
               </div>
 
-              <div class="form-group">
+              <div class="form-group col-8">
                 <label>Letra: </label>
                 <input
                   v-model="typeform.lyrics"
@@ -154,7 +154,7 @@ export default {
                 />
               </div>
 
-              <div class="form-group">
+              <div class="form-group col-8">
                 <label>Número: </label>
                 <input
                   v-model="typeform.number"
@@ -163,7 +163,7 @@ export default {
                 />
               </div>
 
-              <div class="form-group">
+              <div class="form-group col-8">
                 <label>Año: </label>
                 <input
                   v-model="typeform.year"
@@ -172,7 +172,7 @@ export default {
                 />
               </div>
 
-              <div class="form-group mt-5 mb-0">
+              <div class="form-group col-12 mt-5 mb-0">
                 <div>
                   <button type="submit" class="btn btn-primary" :disabled="tryingToSubmit">
                     <i class="fa fa-spinner fa-spin" v-if="tryingToSubmit"></i> Guardar

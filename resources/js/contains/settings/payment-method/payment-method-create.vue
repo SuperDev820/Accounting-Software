@@ -103,8 +103,8 @@ export default {
               class="mt-3"
               dismissible
             >{{ Error }}</b-alert>
-            <form action="#" @submit.prevent="typeForm">
-              <div class="form-group">
+            <form action="#" @submit.prevent="typeForm" class="row">
+              <div class="form-group col-8">
                 <label>Nombre: </label>
                 <input
                   v-model="typeform.name"
@@ -117,7 +117,7 @@ export default {
                 </div>
               </div>
 
-              <div class="form-group">
+              <div class="form-group col-8">
                 <label>Valor Operaciones: </label>
                 <input
                   v-model="typeform.operation_values"
@@ -126,7 +126,7 @@ export default {
                 />
               </div>
 
-              <div class="form-group">
+              <div class="form-group col-8">
                 <label>Nº Fracciones: </label>
                 <input
                   v-model="typeform.no_fractions"
@@ -135,7 +135,7 @@ export default {
                 />
               </div>
 
-              <div class="form-group mt-5 mb-0">
+              <div class="form-group col-12 mt-5 mb-0">
                 <div>
                   <button type="submit" class="btn btn-primary" :disabled="tryingToSubmit">
                     <i class="fa fa-spinner fa-spin" v-if="tryingToSubmit"></i> Guardar
