@@ -19,3 +19,19 @@ textarea {
 .table tbody tr i {
   width: 12px;;
 }
+
+.btn-success {
+  background-color: #71ca3a;
+  border-color: #71ca3a;
+}
+.btn-success:hover {
+  color: #fff;
+  background-color: #5dbb27;
+  border-color: #5dbb27;
+}
+.btn-success:focus, .btn-success.focus {
+  color: #fff;
+  background-color: #5dbb27;
+  border-color: #5dbb27;
+  box-shadow: 0 0 0 0.15rem rgb(40 178 168 / 50%);
+}

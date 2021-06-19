@@ -1626,16 +1626,21 @@ var render = function() {
               [
                 _c("span", { staticClass: "logo-sm" }, [
                   _c("img", {
-                    attrs: { src: "/images/logo-sm.png", alt: "", height: "22" }
+                    attrs: {
+                      src: "/images/logo-sm.jpg",
+                      alt: "",
+                      height: "120"
+                    }
                   })
                 ]),
                 _vm._v(" "),
                 _c("span", { staticClass: "logo-lg" }, [
                   _c("img", {
                     attrs: {
-                      src: "/images/logo-dark.png",
+                      src: "/images/logo-dark.jpg",
                       alt: "",
-                      height: "45"
+                      height: "120",
+                      width: "285"
                     }
                   })
                 ])
@@ -1648,16 +1653,21 @@ var render = function() {
               [
                 _c("span", { staticClass: "logo-sm" }, [
                   _c("img", {
-                    attrs: { src: "/images/logo-sm.png", alt: "", height: "22" }
+                    attrs: {
+                      src: "/images/logo-sm.jpg",
+                      alt: "",
+                      height: "120"
+                    }
                   })
                 ]),
                 _vm._v(" "),
                 _c("span", { staticClass: "logo-lg" }, [
                   _c("img", {
                     attrs: {
-                      src: "/images/logo-light.png",
+                      src: "/images/logo-light.jpg",
                       alt: "",
-                      height: "45"
+                      height: "120",
+                      width: "285"
                     }
                   })
                 ])
@@ -1678,67 +1688,42 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "d-flex" },
-        [
-          _c("div", { staticClass: "dropdown d-none d-lg-inline-block" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn header-item noti-icon",
-                attrs: { type: "button" },
-                on: { click: _vm.initFullScreen }
-              },
-              [_c("i", { staticClass: "mdi mdi-fullscreen" })]
-            )
-          ]),
-          _vm._v(" "),
+      _c("div", { staticClass: "d-flex" }, [
+        _c("div", { staticClass: "dropdown d-none d-lg-inline-block" }, [
           _c(
-            "b-dropdown",
+            "button",
             {
-              staticClass: "d-inline-block",
-              attrs: {
-                right: "",
-                "toggle-class": "header-item",
-                variant: "white"
-              },
-              scopedSlots: _vm._u([
-                {
-                  key: "button-content",
-                  fn: function() {
-                    return [
-                      _c("img", {
-                        staticClass: "rounded-circle header-profile-user",
-                        attrs: { src: "/images/user.jpg", alt: "Header Avatar" }
-                      })
-                    ]
-                  },
-                  proxy: true
-                }
-              ])
+              staticClass: "btn header-item noti-icon",
+              attrs: { type: "button" },
+              on: { click: _vm.initFullScreen }
             },
-            [
-              _vm._v(" "),
-              _c(
-                "a",
-                {
-                  staticClass: "dropdown-item text-danger",
-                  attrs: { href: "/logout" }
-                },
-                [
-                  _c("i", {
-                    staticClass:
-                      "bx bx-power-off font-size-17 align-middle mr-1 text-danger"
-                  }),
-                  _vm._v(" Cerrar Sesión\n        ")
-                ]
-              )
-            ]
+            [_c("i", { staticClass: "mdi mdi-fullscreen" })]
           )
-        ],
-        1
-      )
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "d-flex align-items-center",
+            staticStyle: { "font-size": "22px", "line-height": "0" }
+          },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "d-inline-block text-white",
+                attrs: { to: "/logout" }
+              },
+              [
+                _c("i", {
+                  staticClass: "fas fa-sign-out-alt align-middle mr-1"
+                })
+              ]
+            )
+          ],
+          1
+        )
+      ])
     ])
   ])
 }

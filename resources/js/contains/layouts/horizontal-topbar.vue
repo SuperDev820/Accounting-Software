@@ -50,19 +50,19 @@ export default {
         <div class="navbar-brand-box">
           <router-link to="/" class="logo logo-dark">
             <span class="logo-sm">
-              <img src="/images/logo-sm.png" alt height="22" />
+              <img src="/images/logo-sm.jpg" alt height="120" />
             </span>
             <span class="logo-lg">
-              <img src="/images/logo-dark.png" alt height="45" />
+              <img src="/images/logo-dark.jpg" alt height="120" width="285" />
             </span>
           </router-link>
 
           <router-link to="/" class="logo logo-light">
             <span class="logo-sm">
-              <img src="/images/logo-sm.png" alt height="22" />
+              <img src="/images/logo-sm.jpg" alt height="120" />
             </span>
             <span class="logo-lg">
-              <img src="/images/logo-light.png" alt height="45" />
+              <img src="/images/logo-light.jpg" alt height="120" width="285" />
             </span>
           </router-link>
         </div>
@@ -83,18 +83,11 @@ export default {
           </button>
         </div>
 
-        <b-dropdown class="d-inline-block" right toggle-class="header-item" variant="white">
-          <template v-slot:button-content>
-            <img
-              class="rounded-circle header-profile-user"
-              src="/images/user.jpg"
-              alt="Header Avatar"
-            />
-          </template>
-          <a class="dropdown-item text-danger" href="/logout">
-            <i class="bx bx-power-off font-size-17 align-middle mr-1 text-danger"></i> Cerrar Sesión
-          </a>
-        </b-dropdown>
+        <div class="d-flex align-items-center" style="font-size: 22px;line-height: 0;">
+          <router-link class="d-inline-block text-white" to="/logout">
+            <i class="fas fa-sign-out-alt align-middle mr-1"></i>
+          </router-link>
+        </div>
       </div>
     </div>
   </header>

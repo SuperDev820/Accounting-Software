@@ -87,7 +87,7 @@
     <PageHeader :title="title" :items="items">
       <div class="float-right">
         <router-link :to="{name: 'SeriesInvoiceCreate'}"
-          class="btn btn-info btn-block d-inline-block"
+          class="btn btn-success btn-block d-inline-block"
         >
           <i class="fas fa-plus mr-1"></i> Agregar Serie
         </router-link>
@@ -145,7 +145,7 @@
                   <span v-else>{{row.item.Letra +'-'+ row.item.Numero +'/'+ row.item.Anio}}</span>
                 </template>
                 <template #cell(actions)="row">
-                  <router-link :to="{ name: 'SeriesInvoiceEdit', params: { serieId: row.item.id }}" class="btn btn-sm btn-success">
+                  <router-link :to="{ name: 'SeriesInvoiceEdit', params: { serieId: row.item.id }}" class="btn btn-sm btn-info">
                     <i class="far fa-edit"></i>
                   </router-link>
                   <b-button size="sm" variant="danger" @click="setId(row.item.id)" v-b-modal.delete-modal>
