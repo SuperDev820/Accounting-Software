@@ -3,6 +3,9 @@
 /public/storage
 /storage/*.key
 /vendor
+/.vscode
+.package-lock.json
+.composer.lock
 .env
 .env.backup
 .phpunit.result.cache
